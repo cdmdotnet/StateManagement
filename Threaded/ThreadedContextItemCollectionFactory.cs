@@ -3,7 +3,7 @@
 	/// <summary>
 	/// A factory to obtain instances of <see cref="IContextItemCollection"/> from.
 	/// </summary>
-	public class ThreadedContextItemCollectionFactory
+	public class ThreadedContextItemCollectionFactory : IContextItemCollectionFactory
 	{
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with a global context
