@@ -2,6 +2,7 @@
 
 namespace cdmdotnet.StateManagement.Threaded
 {
+	/// <summary />
 	public class ThreadedContextItemCollection : IContextItemCollection
 	{
 		/// <summary>

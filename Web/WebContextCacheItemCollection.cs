@@ -4,6 +4,7 @@ using System.Web.Caching;
 
 namespace cdmdotnet.StateManagement.Web
 {
+	/// <summary />
 	public class WebContextCacheItemCollection : IWebContextCacheItemCollection
 	{
 		/// <summary>

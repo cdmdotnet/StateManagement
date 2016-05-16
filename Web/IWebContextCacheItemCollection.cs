@@ -3,6 +3,7 @@ using System.Web.Caching;
 
 namespace cdmdotnet.StateManagement.Web
 {
+	/// <summary />
 	public interface IWebContextCacheItemCollection : IContextCacheItemCollection
 	{
 		/// <summary>

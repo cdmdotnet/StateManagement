@@ -1,5 +1,6 @@
 ﻿namespace cdmdotnet.StateManagement.Basic
 {
+	/// <summary />
 	public class BasicContextItemCollectionFactory : IContextItemCollectionFactory
 	{
 		/// <summary>

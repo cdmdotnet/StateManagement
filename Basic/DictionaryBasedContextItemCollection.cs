@@ -2,6 +2,7 @@
 
 namespace cdmdotnet.StateManagement.Basic
 {
+	/// <summary />
 	public class DictionaryBasedContextItemCollection : IContextItemCollection
 	{
 		/// <summary>
@@ -9,6 +10,7 @@ namespace cdmdotnet.StateManagement.Basic
 		/// </summary>
 		public IDictionary<string, object> InternalStateDictionary { get; set; }
 
+		/// <summary />
 		public DictionaryBasedContextItemCollection()
 		{
 			InternalStateDictionary = new Dictionary<string, object>();
