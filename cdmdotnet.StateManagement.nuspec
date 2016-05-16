@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>cdmdotnet.StateManagement</id>
+		<title>C# State Management</title>
+		<version>$version$</version>
+		<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+		<projectUrl>https://github.com/cdmdotnet/StateManagement</projectUrl>
+		<authors>cdmdotnet Limited</authors>
+		<iconUrl>https://raw.githubusercontent.com/Chinchilla-Software-Com/CQRS/master/wiki/ChinChilla-Software-Red.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>
+			cdmdotnet.Logging is an abstracted state mangement platform for .NET. It can help you by providing a consistent abstraction over all the different collection for your application regardless of its size or complexity with minimal performance implications.
+		</description>
+		<copyright>Copyright 2015</copyright>
+	</metadata>
+</package>
