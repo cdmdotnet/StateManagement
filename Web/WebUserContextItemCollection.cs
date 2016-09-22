@@ -15,7 +15,7 @@ namespace cdmdotnet.StateManagement.Web
 		/// <returns>
 		/// The object in the call context associated with the specified name.
 		/// </returns>
-		public TData GetData<TData>(string name)
+		public virtual TData GetData<TData>(string name)
 		{
 			return (TData)HttpContext.Current.Session[name];
 		}
@@ -25,7 +25,7 @@ namespace cdmdotnet.StateManagement.Web
 		/// </summary>
 		/// <param name="name">The name with which to associate the new item in the call context.</param>
 		/// <param name="data">The object to store in the call context.</param>
-		public TData SetData<TData>(string name, TData data)
+		public virtual TData SetData<TData>(string name, TData data)
 		{
 			HttpContext.Current.Session[name] = data;
 			return data;

@@ -14,7 +14,7 @@ namespace cdmdotnet.StateManagement.Web
 		/// <returns>
 		/// The object in the call context associated with the specified name.
 		/// </returns>
-		public TData GetData<TData>(string name)
+		public virtual TData GetData<TData>(string name)
 		{
 			string result = HttpContext.Current.Request[name];
 			return (TData)(object)result;
@@ -23,7 +23,7 @@ namespace cdmdotnet.StateManagement.Web
 		/// <summary>
 		/// Does nothing as this is an incoming context.
 		/// </summary>
-		public TData SetData<TData>(string name, TData data)
+		public virtual TData SetData<TData>(string name, TData data)
 		{
 			return data;
 		}

@@ -9,7 +9,7 @@
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		public IContextItemCollection GetGlobalContext()
+		public virtual IContextItemCollection GetGlobalContext()
 		{
 			return new DictionaryBasedContextItemCollection();
 		}
@@ -20,7 +20,7 @@
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		public IContextItemCollection GetUserContext()
+		public virtual IContextItemCollection GetUserContext()
 		{
 			return new DictionaryBasedContextItemCollection();
 		}
@@ -31,7 +31,7 @@
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		public IContextItemCollection GetTransientUserContext()
+		public virtual IContextItemCollection GetTransientUserContext()
 		{
 			return new DictionaryBasedContextItemCollection();
 		}
@@ -42,7 +42,7 @@
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		public IContextItemCollection GetCurrentContext()
+		public virtual IContextItemCollection GetCurrentContext()
 		{
 			return new DictionaryBasedContextItemCollection();
 		}
@@ -53,7 +53,7 @@
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		public IContextItemCollection GetIncomingContext()
+		public virtual IContextItemCollection GetIncomingContext()
 		{
 			return new DictionaryBasedContextItemCollection();
 		}
@@ -64,7 +64,7 @@
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		public IContextItemCollection GetOutgoingContext()
+		public virtual IContextItemCollection GetOutgoingContext()
 		{
 			return new DictionaryBasedContextItemCollection();
 		}

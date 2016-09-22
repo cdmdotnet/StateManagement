@@ -14,7 +14,7 @@ namespace cdmdotnet.StateManagement.Web
 		/// <returns>
 		/// The object in the call context associated with the specified name.
 		/// </returns>
-		public object GetData(string name)
+		public virtual object GetData(string name)
 		{
 			return HttpContext.Current.Cache.Get(name);
 		}
@@ -27,7 +27,7 @@ namespace cdmdotnet.StateManagement.Web
 		/// <param name="dependency">The file or cache key dependencies for the item. When any dependency changes, the <see cref="!:data">object</see> becomes invalid and is removed from the cache. If there are no dependencies, this parameter contains null</param>
 		/// <param name="absoluteExpiration">The time at which the added <see cref="!:data">object</see> expires and is removed from the cache. If you are using <see cref="!:slidingExpiration">sliding expiration</see>, the <see cref="!:absoluteExpiration"/> parameter must be System.Web.Caching.Cache.NoAbsoluteExpiration.</param>
 		/// <param name="slidingExpiration">The interval between the time the added <see cref="!:data">object</see> was last accessed and the time at which that <see cref="!:data">object</see> expires. If this value is the equivalent of 20 minutes, the object expires and is removed from the cache 20 minutes after it is last accessed. If you are using <see cref="!:absoluteExpiration">absolute expiration</see>, the <see cref="!:slidingExpiration"/> parameter must be System.Web.Caching.Cache.NoSlidingExpiration.</param>
-		public object SetData(string name, object data, string dependency, DateTime absoluteExpiration, TimeSpan slidingExpiration)
+		public virtual object SetData(string name, object data, string dependency, DateTime absoluteExpiration, TimeSpan slidingExpiration)
 		{
 			return SetData(name, data, string.IsNullOrEmpty(dependency) ? null : new CacheDependency(dependency), absoluteExpiration, slidingExpiration, CacheItemPriority.Normal, null);
 		}
@@ -44,7 +44,7 @@ namespace cdmdotnet.StateManagement.Web
 		/// <returns>
 		/// An object if the item was previously stored in the Cache; otherwise, null.
 		/// </returns>
-		public object SetData(string name, object data, CacheDependency dependencies, DateTime absoluteExpiration, TimeSpan slidingExpiration, CacheItemPriority priority, CacheItemRemovedCallback onRemoveCallback)
+		public virtual object SetData(string name, object data, CacheDependency dependencies, DateTime absoluteExpiration, TimeSpan slidingExpiration, CacheItemPriority priority, CacheItemRemovedCallback onRemoveCallback)
 		{
 			return HttpContext.Current.Cache.Add(name, data, dependencies, absoluteExpiration, slidingExpiration, priority, onRemoveCallback);
 		}

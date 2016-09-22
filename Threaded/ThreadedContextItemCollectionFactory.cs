@@ -33,7 +33,7 @@
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		public IContextItemCollection GetTransientUserContext()
+		public virtual IContextItemCollection GetTransientUserContext()
 		{
 			return new ThreadedContextItemCollection();
 		}

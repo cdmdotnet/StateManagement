@@ -23,7 +23,7 @@ namespace cdmdotnet.StateManagement.Basic
 		/// <returns>
 		/// The object associated with the specified name.
 		/// </returns>
-		public TData GetData<TData>(string name)
+		public virtual TData GetData<TData>(string name)
 		{
 			return (TData)(InternalStateDictionary.ContainsKey(name) ? InternalStateDictionary[name] : (object)null);
 		}
@@ -34,7 +34,7 @@ namespace cdmdotnet.StateManagement.Basic
 		/// </summary>
 		/// <param name="name">The name with which to associate the new item.</param>
 		/// <param name="data">The object to store.</param>
-		public TData SetData<TData>(string name, TData data)
+		public virtual TData SetData<TData>(string name, TData data)
 		{
 			InternalStateDictionary[name] = data;
 			return data;

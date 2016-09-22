@@ -10,7 +10,7 @@ namespace cdmdotnet.StateManagement.Web
 		/// <summary>
 		/// Does nothing as this is an outgoing context.
 		/// </summary>
-		public TData GetData<TData>(string name)
+		public virtual TData GetData<TData>(string name)
 		{
 			return default(TData);
 		}
@@ -20,7 +20,7 @@ namespace cdmdotnet.StateManagement.Web
 		/// </summary>
 		/// <param name="name">The name with which to associate the new item in the call context.</param>
 		/// <param name="data">The object to store in the call context.</param>
-		public TData SetData<TData>(string name, TData data)
+		public virtual TData SetData<TData>(string name, TData data)
 		{
 			HttpContext.Current.Response.Headers[name] = (string)(object)data;
 			return data;
