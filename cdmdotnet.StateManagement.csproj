@@ -41,8 +41,10 @@
     <Compile Include="IContextItemCollectionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Basic\DictionaryBasedContextItemCollection.cs" />
+    <Compile Include="TaskExtensions.cs" />
     <Compile Include="Threaded\ThreadedContextItemCollection.cs" />
     <Compile Include="Threaded\ThreadedContextItemCollectionFactory.cs" />
+    <Compile Include="ContextItemCollection.cs" />
     <Compile Include="Web\IWebContextCacheItemCollection.cs" />
     <Compile Include="Web\WebContextCacheItemCollection.cs" />
     <Compile Include="Web\WebContextItemCollection.cs" />

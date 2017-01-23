@@ -13,5 +13,10 @@
 			cdmdotnet.Logging is an abstracted state mangement platform for .NET. It can help you by providing a consistent abstraction over all the different collection for your application regardless of its size or complexity with minimal performance implications.
 		</description>
 		<copyright>Copyright 2015</copyright>
+		<releaseNotes>
+			Version 3.0.6
+
+			* Switched to using an internal dictionary for controlling the passing of the data within a thread to thread situation such as when using Parallel Tasks.
+		</releaseNotes>
 	</metadata>
 </package>
