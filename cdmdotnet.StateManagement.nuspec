@@ -10,7 +10,7 @@
 		<iconUrl>https://raw.githubusercontent.com/Chinchilla-Software-Com/CQRS/master/wiki/ChinChilla-Software-Red.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>
-			cdmdotnet.Logging is an abstracted state mangement platform for .NET. It can help you by providing a consistent abstraction over all the different collection for your application regardless of its size or complexity with minimal performance implications.
+			C# State Management provides a consistent abstraction to accessing data from various collections such as thread bound contexts, HTTP Request and Response collections as well as HTTP Cookies.
 		</description>
 		<copyright>Copyright 2015</copyright>
 		<releaseNotes>
