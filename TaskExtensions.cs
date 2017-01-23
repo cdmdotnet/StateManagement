@@ -251,7 +251,7 @@ namespace System
 		/// </summary>
 		/// <remarks>Value changes will be passed back out.</remarks>
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		public static Task<TResult> Safely<TResult>(this TaskFactory taskFactory, Func<TResult> function)
+		public static Task<TResult> StartNewSafely<TResult>(this TaskFactory taskFactory, Func<TResult> function)
 		{
 			IDictionary<string, object> cache = null;
 			try
