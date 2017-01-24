@@ -74,12 +74,9 @@ namespace cdmdotnet.StateManagement.Web
 				{
 					cache = (IDictionary<string, object>)CallContext.GetData(CurrentContextKeysDictionaryName);
 				}
-				catch (NullReferenceException)
-				{
-					SetCache();
-				}
+				catch (NullReferenceException) { }
 			}
-			return cache;
+			return cache ?? SetCache();
 		}
 
 		internal override IDictionary<string, object> SetCache(IDictionary<string, object> cache = null)

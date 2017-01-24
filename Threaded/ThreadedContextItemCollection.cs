@@ -50,11 +50,8 @@ namespace cdmdotnet.StateManagement.Threaded
 			{
 				cache = (IDictionary<string, object>)CallContext.GetData(CurrentContextKeysDictionaryName);
 			}
-			catch (NullReferenceException)
-			{
-				SetCache();
-			}
-			return cache;
+			catch (NullReferenceException) { }
+			return cache ?? SetCache();
 		}
 
 		internal override IDictionary<string, object> SetCache(IDictionary<string, object> cache = null)
