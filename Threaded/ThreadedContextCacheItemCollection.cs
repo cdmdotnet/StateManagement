@@ -30,7 +30,7 @@ namespace cdmdotnet.StateManagement.Threaded
 		{
 			CacheItemPolicy cacheItemPolicy = new CacheItemPolicy
 			{
-				AbsoluteExpiration = absoluteExpiration,
+				AbsoluteExpiration = absoluteExpiration == System.Web.Caching.Cache.NoAbsoluteExpiration ? DateTimeOffset.MaxValue : absoluteExpiration,
 				SlidingExpiration = slidingExpiration
 			};
 
