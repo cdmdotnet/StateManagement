@@ -45,6 +45,7 @@
     <Compile Include="Threaded\ThreadedContextItemCollection.cs" />
     <Compile Include="Threaded\ThreadedContextItemCollectionFactory.cs" />
     <Compile Include="ContextItemCollection.cs" />
+    <Compile Include="Threaded\ThreadedContextCacheItemCollection.cs" />
     <Compile Include="Web\IWebContextCacheItemCollection.cs" />
     <Compile Include="Web\WebContextCacheItemCollection.cs" />
     <Compile Include="Web\WebContextItemCollection.cs" />
@@ -57,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
