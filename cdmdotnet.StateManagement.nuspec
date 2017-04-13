@@ -14,7 +14,7 @@
 		</description>
 		<copyright>Copyright 2015</copyright>
 		<releaseNotes>
-			Version 3.0.10
+			Version 3.0.11
 
 			* Added a threaded based MemoryCache implementation of IContextCacheItemCollection.
 
