@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Caching;
+using System.Web.Caching;
 
 namespace cdmdotnet.StateManagement.Threaded
 {
@@ -30,9 +31,13 @@ namespace cdmdotnet.StateManagement.Threaded
 		{
 			CacheItemPolicy cacheItemPolicy = new CacheItemPolicy
 			{
-				AbsoluteExpiration = absoluteExpiration == System.Web.Caching.Cache.NoAbsoluteExpiration ? DateTimeOffset.MaxValue : absoluteExpiration,
+				AbsoluteExpiration = absoluteExpiration,
 				SlidingExpiration = slidingExpiration
 			};
+
+			// Placing this above in the constructor didn't work... go figure.
+			if (absoluteExpiration == Cache.NoAbsoluteExpiration)
+				cacheItemPolicy.AbsoluteExpiration = DateTimeOffset.MaxValue;
 
 			return MemoryCache.Default.Add(name, data, cacheItemPolicy);
 		}
