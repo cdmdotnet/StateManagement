@@ -1,4 +1,12 @@
-﻿namespace cdmdotnet.StateManagement.Web
+﻿#region Copyright
+// // -----------------------------------------------------------------------
+// // <copyright company="cdmdotnet Limited">
+// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // </copyright>
+// // -----------------------------------------------------------------------
+#endregion
+
+namespace cdmdotnet.StateManagement.Web
 {
 	/// <summary>
 	/// A factory to obtain instances of <see cref="IContextItemCollection"/> from.

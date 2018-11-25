@@ -21,6 +21,8 @@ namespace System
 	/// </summary>
 	public static class TaskExtensions
 	{
+
+
 		/// <summary>
 		/// This method will ensure all thread based storage values are copied into the <see cref="Thread"/> used by this <see cref="Task"/>.
 		/// This will ensure logging and eventing will work far more smoothly.

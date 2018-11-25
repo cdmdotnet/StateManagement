@@ -1,4 +1,12 @@
-﻿namespace cdmdotnet.StateManagement.Threaded
+﻿#region Copyright
+// // -----------------------------------------------------------------------
+// // <copyright company="cdmdotnet Limited">
+// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // </copyright>
+// // -----------------------------------------------------------------------
+#endregion
+
+namespace cdmdotnet.StateManagement.Threaded
 {
 	/// <summary>
 	/// A factory to obtain instances of <see cref="IContextItemCollection"/> from.

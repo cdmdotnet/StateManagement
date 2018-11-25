@@ -1,4 +1,12 @@
-﻿using System.Web;
+﻿#region Copyright
+// // -----------------------------------------------------------------------
+// // <copyright company="cdmdotnet Limited">
+// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // </copyright>
+// // -----------------------------------------------------------------------
+#endregion
+
+using System.Web;
 using System.Web.SessionState;
 
 namespace cdmdotnet.StateManagement.Web

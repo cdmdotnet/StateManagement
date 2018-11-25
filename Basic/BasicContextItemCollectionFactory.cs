@@ -1,4 +1,12 @@
-﻿namespace cdmdotnet.StateManagement.Basic
+﻿#region Copyright
+// // -----------------------------------------------------------------------
+// // <copyright company="cdmdotnet Limited">
+// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // </copyright>
+// // -----------------------------------------------------------------------
+#endregion
+
+namespace cdmdotnet.StateManagement.Basic
 {
 	/// <summary />
 	public class BasicContextItemCollectionFactory : IContextItemCollectionFactory
