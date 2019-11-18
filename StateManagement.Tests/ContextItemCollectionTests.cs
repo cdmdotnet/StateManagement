@@ -61,9 +61,6 @@ namespace Chinchilla.StateManagement.Tests
 			// Assert
 			Assert.AreEqual(1, finalTest1Result.Value);
 			Assert.AreEqual(2, finalTest2Result.Value);
-
-			var cache = new ThreadLocal<IDictionary<string, object>>();
-			cache.Values.Count();
 		}
 	}
 }
