@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netcoreapp3.0</TargetFramework>
+		<TargetFrameworks>netcoreapp3.0;net40</TargetFrameworks>
 		<Authors>Chinchilla Software</Authors>
 		<Description>Chinchilla.StateManagement is a .NET Core port of cdmdotnet.StateManagement, a C# state management framework that provides a consistent abstraction for accessing data from various collections such as thread bound contexts, HTTP Request and Response collections as well as HTTP Cookies.</Description>
 		<Copyright>Copyright ©  2019</Copyright>
