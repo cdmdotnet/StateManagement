@@ -9,6 +9,7 @@
     <PackageProjectUrl>https://github.com/cdmdotnet/StateManagement</PackageProjectUrl>
     <RepositoryUrl>https://github.com/cdmdotnet/StateManagement</RepositoryUrl>
     <PackageReleaseNotes>Ported from cdmdotnet Limited</PackageReleaseNotes>
+    <PackageIconUrl>https://raw.githubusercontent.com/Chinchilla-Software-Com/CQRS/master/wiki/ChinChilla-Software-Red.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>

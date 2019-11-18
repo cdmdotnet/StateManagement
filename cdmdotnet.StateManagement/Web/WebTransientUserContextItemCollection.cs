@@ -1,12 +1,13 @@
 ﻿#region Copyright
 // // -----------------------------------------------------------------------
-// // <copyright company="Chinchilla Software Limited">
-// // 	Copyright Chinchilla Software Limited. All rights reserved.
+// // <copyright company="cdmdotnet Limited">
+// // 	Copyright cdmdotnet Limited. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
 #endregion
 
-using Microsoft.AspNetCore.Http;
+using System.Linq;
+using System.Web;
 
 namespace Chinchilla.StateManagement.Web
 {
@@ -15,15 +16,8 @@ namespace Chinchilla.StateManagement.Web
 	/// </summary>
 	public class WebTransientUserContextItemCollection : IContextItemCollection
 	{
-		protected IHttpContextAccessor HttpContextAccessor { get; }
-
-		public WebTransientUserContextItemCollection(IHttpContextAccessor httpContextAccessor)
-		{
-			HttpContextAccessor = httpContextAccessor;
-		}
-
 		/// <summary>
-		/// Retrieves an object with the specified name from the <see cref="IRequestCookieCollection"/>
+		/// Retrieves an object with the specified name from the <see cref="HttpCookieCollection"/>
 		/// </summary>
 		/// <param name="name">The name of the item in the call context.</param>
 		/// <returns>
@@ -31,20 +25,28 @@ namespace Chinchilla.StateManagement.Web
 		/// </returns>
 		public virtual TData GetData<TData>(string name)
 		{
-			string cookie = HttpContextAccessor.HttpContext.Request.Cookies[name];
+			HttpCookie cookie = HttpContext.Current.Request.Cookies[name];
 			if (cookie == null)
 				return (TData)(object)null;
-			return (TData)(object)cookie;
+			return (TData)(object)cookie.Value;
 		}
 
 		/// <summary>
-		/// Stores a given object and associates it with the specified name in the <see cref="IResponseCookieCollection"/>
+		/// Stores a given object and associates it with the specified name in the <see cref="HttpCookieCollection"/>
 		/// </summary>
 		/// <param name="name">The name with which to associate the new item in the call context.</param>
 		/// <param name="data">The object to store in the call context.</param>
 		public virtual TData SetData<TData>(string name, TData data)
 		{
-			HttpContextAccessor.HttpContext.Response.Cookies.Append("name", (string)(object)data);
+			HttpCookie cookie = null;
+			if (HttpContext.Current.Response.Cookies.AllKeys.Contains("name"))
+				cookie = HttpContext.Current.Response.Cookies[name];
+			if (cookie == null)
+			{
+				cookie = new HttpCookie(name);
+				HttpContext.Current.Response.Cookies.Add(cookie);
+			}
+			cookie.Value = (string)(object)data;
 			return data;
 		}
 	}

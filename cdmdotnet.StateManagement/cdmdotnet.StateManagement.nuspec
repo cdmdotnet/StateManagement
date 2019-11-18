@@ -12,8 +12,16 @@
 		<description>
 			C# State Management provides a consistent abstraction for accessing data from various collections such as thread bound contexts, HTTP Request and Response collections as well as HTTP Cookies.
 		</description>
-		<copyright>Copyright 2015</copyright>
+		<copyright>Copyright 2019</copyright>
 		<releaseNotes>
+			Version 4.0.0
+
+			* Added a .NET Core 3.0 support.
+
+			Breaking Changes
+
+			* TasksExtensions moved from the System namespace to the System.Threading.Tasks namespace
+
 			Version 3.0.11
 
 			* Added a threaded based MemoryCache implementation of IContextCacheItemCollection.
@@ -22,5 +30,23 @@
 
 			* Switched to using an internal dictionary for controlling the passing of the data within a thread to thread situation such as when using Parallel Tasks.
 		</releaseNotes>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
+			<frameworkAssembly assemblyName="System.Runtime.Caching" targetFramework="net40" />
+		</frameworkAssemblies>
+		<dependencies>
+			<group targetFramework="netcoreapp3.0">
+				<dependency id="Microsoft.AspNetCore.Http.Abstractions" version="2.2.0" />
+				<dependency id="System.Runtime.Caching" version="4.6.0" />
+			</group>
+		</dependencies>
 	</metadata>
+	<files>
+		<file src="bin\Release\*.dll" target="lib\net40" />
+		<file src="bin\Release\*.pdb" target="lib\net40" />
+		<file src="bin\Release\*.xml" target="lib\net40" />
+		<file src="..\StateManagement\bin\Release\*.dll" target="lib\netcoreapp3.0" />
+		<file src="..\StateManagement\bin\Release\*.pdb" target="lib\netcoreapp3.0" />
+		<file src="..\StateManagement\bin\Release\*.xml" target="lib\netcoreapp3.0" />
+	</files>
 </package>
