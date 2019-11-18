@@ -1,17 +1,17 @@
 ﻿#region Copyright
 // // -----------------------------------------------------------------------
-// // <copyright company="cdmdotnet Limited">
-// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // <copyright company="Chinchilla Software Limited">
+// // 	Copyright Chinchilla Software Limited. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
 #endregion
 
-namespace cdmdotnet.StateManagement.Web
+namespace Chinchilla.StateManagement
 {
 	/// <summary>
 	/// A factory to obtain instances of <see cref="IContextItemCollection"/> from.
 	/// </summary>
-	public class WebContextItemCollectionFactory : IContextItemCollectionFactory
+	public interface IContextItemCollectionFactory
 	{
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with a global context
@@ -19,10 +19,7 @@ namespace cdmdotnet.StateManagement.Web
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		public virtual IContextItemCollection GetGlobalContext()
-		{
-			return (IContextItemCollection)new WebGlobalContextItemCollection();
-		}
+		IContextItemCollection GetGlobalContext();
 
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with a user context
@@ -30,10 +27,7 @@ namespace cdmdotnet.StateManagement.Web
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		public virtual IContextItemCollection GetUserContext()
-		{
-			return (IContextItemCollection)new WebUserContextItemCollection();
-		}
+		IContextItemCollection GetUserContext();
 
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with a user context that is transient with each request
@@ -41,10 +35,7 @@ namespace cdmdotnet.StateManagement.Web
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		public IContextItemCollection GetTransientUserContext()
-		{
-			return (IContextItemCollection)new WebTransientUserContextItemCollection();
-		}
+		IContextItemCollection GetTransientUserContext();
 
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with a current request/thread context
@@ -52,10 +43,7 @@ namespace cdmdotnet.StateManagement.Web
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		public virtual IContextItemCollection GetCurrentContext()
-		{
-			return (IContextItemCollection)new WebContextItemCollection();
-		}
+		IContextItemCollection GetCurrentContext();
 
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with an incoming context
@@ -63,10 +51,7 @@ namespace cdmdotnet.StateManagement.Web
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		public virtual IContextItemCollection GetIncomingContext()
-		{
-			return (IContextItemCollection)new WebIncomingContextItemCollection();
-		}
+		IContextItemCollection GetIncomingContext();
 
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with an outgoing context
@@ -74,9 +59,6 @@ namespace cdmdotnet.StateManagement.Web
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		public virtual IContextItemCollection GetOutgoingContext()
-		{
-			return (IContextItemCollection)new WebOutgoingContextItemCollection();
-		}
+		IContextItemCollection GetOutgoingContext();
 	}
 }

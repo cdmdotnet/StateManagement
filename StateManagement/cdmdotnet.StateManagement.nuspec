@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0"?>
 <package>
 	<metadata>
-		<id>cdmdotnet.StateManagement</id>
+		<id>Chinchilla.StateManagement</id>
 		<title>C# State Management</title>
 		<version>$version$</version>
 		<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
 		<projectUrl>https://github.com/cdmdotnet/StateManagement</projectUrl>
-		<authors>cdmdotnet Limited</authors>
+		<authors>Chinchilla Software Limited</authors>
 		<iconUrl>https://raw.githubusercontent.com/Chinchilla-Software-Com/CQRS/master/wiki/ChinChilla-Software-Red.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>
-			C# State Management provides a consistent abstraction to accessing data from various collections such as thread bound contexts, HTTP Request and Response collections as well as HTTP Cookies.
+			C# State Management provides a consistent abstraction for accessing data from various collections such as thread bound contexts, HTTP Request and Response collections as well as HTTP Cookies.
 		</description>
 		<copyright>Copyright 2015</copyright>
 		<releaseNotes>

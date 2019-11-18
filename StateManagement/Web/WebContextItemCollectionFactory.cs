@@ -1,16 +1,27 @@
 ﻿#region Copyright
 // // -----------------------------------------------------------------------
-// // <copyright company="cdmdotnet Limited">
-// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // <copyright company="Chinchilla Software Limited">
+// // 	Copyright Chinchilla Software Limited. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
 #endregion
 
-namespace cdmdotnet.StateManagement.Basic
+using Microsoft.AspNetCore.Http;
+
+namespace Chinchilla.StateManagement.Web
 {
-	/// <summary />
-	public class BasicContextItemCollectionFactory : IContextItemCollectionFactory
+	/// <summary>
+	/// A factory to obtain instances of <see cref="IContextItemCollection"/> from.
+	/// </summary>
+	public class WebContextItemCollectionFactory : IContextItemCollectionFactory
 	{
+		protected IHttpContextAccessor HttpContextAccessor { get; }
+
+		public WebContextItemCollectionFactory(IHttpContextAccessor httpContextAccessor)
+		{
+			HttpContextAccessor = httpContextAccessor;
+		}
+
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with a global context
 		/// </summary>
@@ -19,7 +30,7 @@ namespace cdmdotnet.StateManagement.Basic
 		/// </returns>
 		public virtual IContextItemCollection GetGlobalContext()
 		{
-			return new DictionaryBasedContextItemCollection();
+			return (IContextItemCollection)new WebGlobalContextItemCollection();
 		}
 
 		/// <summary>
@@ -30,7 +41,7 @@ namespace cdmdotnet.StateManagement.Basic
 		/// </returns>
 		public virtual IContextItemCollection GetUserContext()
 		{
-			return new DictionaryBasedContextItemCollection();
+			return (IContextItemCollection)new WebUserContextItemCollection(HttpContextAccessor);
 		}
 
 		/// <summary>
@@ -39,9 +50,9 @@ namespace cdmdotnet.StateManagement.Basic
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		public virtual IContextItemCollection GetTransientUserContext()
+		public IContextItemCollection GetTransientUserContext()
 		{
-			return new DictionaryBasedContextItemCollection();
+			return (IContextItemCollection)new WebTransientUserContextItemCollection(HttpContextAccessor);
 		}
 
 		/// <summary>
@@ -52,7 +63,7 @@ namespace cdmdotnet.StateManagement.Basic
 		/// </returns>
 		public virtual IContextItemCollection GetCurrentContext()
 		{
-			return new DictionaryBasedContextItemCollection();
+			return (IContextItemCollection)new WebContextItemCollection(HttpContextAccessor);
 		}
 
 		/// <summary>
@@ -63,7 +74,7 @@ namespace cdmdotnet.StateManagement.Basic
 		/// </returns>
 		public virtual IContextItemCollection GetIncomingContext()
 		{
-			return new DictionaryBasedContextItemCollection();
+			return (IContextItemCollection)new WebIncomingContextItemCollection(HttpContextAccessor);
 		}
 
 		/// <summary>
@@ -74,7 +85,7 @@ namespace cdmdotnet.StateManagement.Basic
 		/// </returns>
 		public virtual IContextItemCollection GetOutgoingContext()
 		{
-			return new DictionaryBasedContextItemCollection();
+			return (IContextItemCollection)new WebOutgoingContextItemCollection(HttpContextAccessor);
 		}
 	}
 }

@@ -1,17 +1,19 @@
 ﻿#region Copyright
 // // -----------------------------------------------------------------------
-// // <copyright company="cdmdotnet Limited">
-// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // <copyright company="Chinchilla Software Limited">
+// // 	Copyright Chinchilla Software Limited. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
 #endregion
 
-namespace cdmdotnet.StateManagement
+using System;
+
+namespace Chinchilla.StateManagement.Threaded
 {
 	/// <summary>
 	/// A factory to obtain instances of <see cref="IContextItemCollection"/> from.
 	/// </summary>
-	public interface IContextItemCollectionFactory
+	public class ContextItemCollectionFactory : IContextItemCollectionFactory
 	{
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with a global context
@@ -19,7 +21,10 @@ namespace cdmdotnet.StateManagement
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		IContextItemCollection GetGlobalContext();
+		public virtual IContextItemCollection GetGlobalContext()
+		{
+			return new GlobalContextItemCollection();
+		}
 
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with a user context
@@ -27,7 +32,10 @@ namespace cdmdotnet.StateManagement
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		IContextItemCollection GetUserContext();
+		public virtual IContextItemCollection GetUserContext()
+		{
+			throw new NotSupportedException("The user context is not support without over-riding.");
+		}
 
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with a user context that is transient with each request
@@ -35,7 +43,10 @@ namespace cdmdotnet.StateManagement
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		IContextItemCollection GetTransientUserContext();
+		public virtual IContextItemCollection GetTransientUserContext()
+		{
+			throw new NotSupportedException("The transient user context is not support without over-riding.");
+		}
 
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with a current request/thread context
@@ -43,7 +54,10 @@ namespace cdmdotnet.StateManagement
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		IContextItemCollection GetCurrentContext();
+		public virtual IContextItemCollection GetCurrentContext()
+		{
+			return new ContextItemCollection();
+		}
 
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with an incoming context
@@ -51,7 +65,10 @@ namespace cdmdotnet.StateManagement
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		IContextItemCollection GetIncomingContext();
+		public virtual IContextItemCollection GetIncomingContext()
+		{
+			throw new NotSupportedException("The incoming context is not support without over-riding.");
+		}
 
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with an outgoing context
@@ -59,6 +76,9 @@ namespace cdmdotnet.StateManagement
 		/// <returns>
 		/// An instance of <see cref="IContextItemCollection"/>
 		/// </returns>
-		IContextItemCollection GetOutgoingContext();
+		public virtual IContextItemCollection GetOutgoingContext()
+		{
+			throw new NotSupportedException("The outgoing context is not support without over-riding.");
+		}
 	}
 }

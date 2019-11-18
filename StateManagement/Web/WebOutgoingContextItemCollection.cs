@@ -1,36 +1,43 @@
 ﻿#region Copyright
 // // -----------------------------------------------------------------------
-// // <copyright company="cdmdotnet Limited">
-// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // <copyright company="Chinchilla Software Limited">
+// // 	Copyright Chinchilla Software Limited. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
 #endregion
 
-using System.Web;
+using Microsoft.AspNetCore.Http;
 
-namespace cdmdotnet.StateManagement.Web
+namespace Chinchilla.StateManagement.Web
 {
 	/// <summary>
-	/// An instance of <see cref="T:cdmdotnet.StateManagement.IContextItemCollection"/> with an outgoing context
+	/// An instance of <see cref="IContextItemCollection"/> with an outgoing context
 	/// </summary>
 	public class WebOutgoingContextItemCollection : IContextItemCollection
 	{
+		protected IHttpContextAccessor HttpContextAccessor { get; }
+
+		public WebOutgoingContextItemCollection(IHttpContextAccessor httpContextAccessor)
+		{
+			HttpContextAccessor = httpContextAccessor;
+		}
+
 		/// <summary>
 		/// Does nothing as this is an outgoing context.
 		/// </summary>
 		public virtual TData GetData<TData>(string name)
 		{
-			return default(TData);
+			return default;
 		}
 
 		/// <summary>
-		/// Stores a given object and associates it with the specified name in the <see cref="T:System.Web.HttpResponse"/>
+		/// Stores a given object and associates it with the specified name in the <see cref="HttpResponse"/>
 		/// </summary>
 		/// <param name="name">The name with which to associate the new item in the call context.</param>
 		/// <param name="data">The object to store in the call context.</param>
 		public virtual TData SetData<TData>(string name, TData data)
 		{
-			HttpContext.Current.Response.Headers[name] = (string)(object)data;
+			HttpContextAccessor.HttpContext.Response.Headers[name] = (string)(object)data;
 			return data;
 		}
 	}

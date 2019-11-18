@@ -1,22 +1,28 @@
 ﻿#region Copyright
 // // -----------------------------------------------------------------------
-// // <copyright company="cdmdotnet Limited">
-// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // <copyright company="Chinchilla Software Limited">
+// // 	Copyright Chinchilla Software Limited. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
 #endregion
 
-using System.Web;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
-namespace cdmdotnet.StateManagement.Web
+namespace Chinchilla.StateManagement.Threaded
 {
 	/// <summary>
 	/// An Instance of <see cref="IContextItemCollection"/> with a global context
 	/// </summary>
-	public class WebGlobalContextItemCollection : IContextItemCollection
+	public class GlobalContextItemCollection : IContextItemCollection
 	{
 		/// <summary>
-		/// Retrieves an object with the specified name from the <see cref="T:System.Web.HttpApplicationState"/>
+		/// The reference to the internal storage cache.
+		/// </summary>
+		protected static IDictionary<string, object> Storage { get; private set; }
+
+		/// <summary>
+		/// Retrieves an object with the specified name from the <see cref="HttpContext.app"/>
 		/// </summary>
 		/// <param name="name">The name of the item in the call context.</param>
 		/// <returns>
@@ -24,7 +30,10 @@ namespace cdmdotnet.StateManagement.Web
 		/// </returns>
 		public virtual TData GetData<TData>(string name)
 		{
-			return (TData)HttpContext.Current.Application[name];
+			object value;
+			if (Storage.TryGetValue(name, out value))
+				return (TData)value;
+			return default;
 		}
 
 		/// <summary>
@@ -34,7 +43,11 @@ namespace cdmdotnet.StateManagement.Web
 		/// <param name="data">The object to store in the call context.</param>
 		public virtual TData SetData<TData>(string name, TData data)
 		{
-			HttpContext.Current.Application[name] = data;
+			if (Storage.ContainsKey(name))
+				Storage[name] = data;
+			else
+				Storage.Add(name, data);
+
 			return data;
 		}
 	}

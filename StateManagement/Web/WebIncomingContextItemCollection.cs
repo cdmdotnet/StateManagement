@@ -1,22 +1,29 @@
 ﻿#region Copyright
 // // -----------------------------------------------------------------------
-// // <copyright company="cdmdotnet Limited">
-// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // <copyright company="Chinchilla Software Limited">
+// // 	Copyright Chinchilla Software Limited. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
 #endregion
 
-using System.Web;
+using Microsoft.AspNetCore.Http;
 
-namespace cdmdotnet.StateManagement.Web
+namespace Chinchilla.StateManagement.Web
 {
 	/// <summary>
 	/// An instance of <see cref="IContextItemCollection"/> with an incoming context
 	/// </summary>
 	public class WebIncomingContextItemCollection : IContextItemCollection
 	{
+		protected IHttpContextAccessor HttpContextAccessor { get; }
+
+		public WebIncomingContextItemCollection(IHttpContextAccessor httpContextAccessor)
+		{
+			HttpContextAccessor = httpContextAccessor;
+		}
+
 		/// <summary>
-		/// Retrieves an object with the specified name from the <see cref="T:System.Web.HttpRequest"/>.
+		/// Retrieves an object with the specified name from the <see cref="HttpRequest"/>.
 		/// </summary>
 		/// <param name="name">The name of the item in the call context.</param>
 		/// <returns>
@@ -24,7 +31,11 @@ namespace cdmdotnet.StateManagement.Web
 		/// </returns>
 		public virtual TData GetData<TData>(string name)
 		{
-			string result = HttpContext.Current.Request[name];
+			string result = HttpContextAccessor.HttpContext.Request.Query[name];
+			if (string.IsNullOrWhiteSpace(result))
+				result = HttpContextAccessor.HttpContext.Request.Form[name];
+			if (string.IsNullOrWhiteSpace(result))
+				result = HttpContextAccessor.HttpContext.Request.Cookies[name];
 			return (TData)(object)result;
 		}
 

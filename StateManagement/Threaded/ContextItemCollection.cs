@@ -1,21 +1,25 @@
 ﻿#region Copyright
 // // -----------------------------------------------------------------------
-// // <copyright company="cdmdotnet Limited">
-// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // <copyright company="Chinchilla Software Limited">
+// // 	Copyright Chinchilla Software Limited. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
 #endregion
 
-using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
+using System.Threading;
 
-namespace cdmdotnet.StateManagement.Threaded
+namespace Chinchilla.StateManagement.Threaded
 {
 	/// <summary />
-	public class ThreadedContextItemCollection : ContextItemCollection
+	public class ContextItemCollection : StateManagement.ContextItemCollection
 	{
+		/// <summary>
+		/// The reference to the internal storage cache.
+		/// </summary>
+		protected static ThreadLocal<IDictionary<string, object>> Cache { get; private set; }
+
 		// ReSharper disable RedundantOverridenMember
 		/// <summary>
 		/// Retrieves an object with the specified <paramref name="name"/> from an internal collection in <see cref="System.Runtime.Remoting.Messaging.CallContext"/>.
@@ -48,16 +52,18 @@ namespace cdmdotnet.StateManagement.Threaded
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = (IDictionary<string, object>)CallContext.GetData(CurrentContextKeysDictionaryName);
+				var _cache = Cache;
+				if (_cache != null)
+					cache = _cache.Value;
 			}
-			catch (NullReferenceException) { }
+			catch { }
 			return cache ?? SetCache();
 		}
 
 		internal override IDictionary<string, object> SetCache(IDictionary<string, object> cache = null)
 		{
 			cache = (cache ?? new ConcurrentDictionary<string, object>());
-			CallContext.SetData(CurrentContextKeysDictionaryName, cache);
+			(Cache ?? (Cache = new ThreadLocal<IDictionary<string, object>>())).Value = cache;
 
 			return cache;
 		}

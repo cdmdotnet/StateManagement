@@ -1,19 +1,18 @@
 ﻿#region Copyright
 // // -----------------------------------------------------------------------
-// // <copyright company="cdmdotnet Limited">
-// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // <copyright company="Chinchilla Software Limited">
+// // 	Copyright Chinchilla Software Limited. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
 #endregion
 
 using System;
 using System.Runtime.Caching;
-using System.Web.Caching;
 
-namespace cdmdotnet.StateManagement.Threaded
+namespace Chinchilla.StateManagement.Threaded
 {
 	/// <summary />
-	public class ThreadedContextCacheItemCollection : IContextCacheItemCollection
+	public class ContextCacheItemCollection : IContextCacheItemCollection
 	{
 		/// <summary>
 		/// Retrieves an object with the specified name from the System.Runtime.Remoting.Messaging.CallContext.
@@ -42,10 +41,6 @@ namespace cdmdotnet.StateManagement.Threaded
 				AbsoluteExpiration = absoluteExpiration,
 				SlidingExpiration = slidingExpiration
 			};
-
-			// Placing this above in the constructor didn't work... go figure.
-			if (absoluteExpiration == Cache.NoAbsoluteExpiration)
-				cacheItemPolicy.AbsoluteExpiration = DateTimeOffset.MaxValue;
 
 			return MemoryCache.Default.Add(name, data, cacheItemPolicy);
 		}

@@ -1,7 +1,7 @@
 ﻿#region Copyright
 // // -----------------------------------------------------------------------
-// // <copyright company="cdmdotnet Limited">
-// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // <copyright company="Chinchilla Software Limited">
+// // 	Copyright Chinchilla Software Limited. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
 #endregion
@@ -9,23 +9,29 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web;
+using Microsoft.AspNetCore.Http;
 
-namespace cdmdotnet.StateManagement.Web
+namespace Chinchilla.StateManagement.Web
 {
 	/// <summary>
 	/// An instance of <see cref="IContextItemCollection"/> with a current request context
 	/// </summary>
-	public class WebContextItemCollection : ContextItemCollection
+	public class WebContextItemCollection : Threaded.ContextItemCollection
 	{
+		protected IHttpContextAccessor HttpContextAccessor { get; }
+
+		public WebContextItemCollection(IHttpContextAccessor httpContextAccessor)
+		{
+			HttpContextAccessor = httpContextAccessor;
+		}
+
 		// ReSharper disable RedundantOverridenMember
 		/// <summary>
 		/// Retrieves an object with the specified name 
-		/// first using <see cref="HttpContext.Items"/> if <see cref="HttpContext.Current"/> is not null
-		/// if <see cref="HttpContext.Current"/> is null OR there is a <see cref="NullReferenceException"/> then
+		/// first using <see cref="HttpContext.Items"/> if <see cref="IHttpContextAccessor.HttpContext"/> is not null
+		/// if <see cref="IHttpContextAccessor.HttpContext"/> is null OR there is a <see cref="NullReferenceException"/> then
 		/// trying from, within this <see cref="Thread"/>.
 		/// </summary>
 		/// <param name="name">The name of the item in the internal cache.</param>
@@ -42,7 +48,7 @@ namespace cdmdotnet.StateManagement.Web
 
 		/// <summary>
 		/// Stores a given object and associates it with the specified name within this <see cref="Thread"/> that can be read via <see cref="GetData{TData}"/>.
-		/// If <see cref="HttpContext.Current"/> is not null then also tries and sets it using <see cref="HttpContext.Items"/>.
+		/// If <see cref="IHttpContextAccessor.HttpContext"/> is not null then also tries and sets it using <see cref="HttpContext.Items"/>.
 		/// </summary>
 		/// <param name="name">The name with which to associate the new item in the internal cache.</param>
 		/// <param name="data">The object to store in the internal cache.</param>
@@ -60,31 +66,25 @@ namespace cdmdotnet.StateManagement.Web
 			IDictionary<string, object> cache = null;
 			try
 			{
-				if (HttpContext.Current != null)
-					cache = (IDictionary<string, object>)HttpContext.Current.Items[CurrentContextKeysDictionaryName];
+				if (HttpContextAccessor.HttpContext != null)
+					cache = (IDictionary<string, object>)HttpContextAccessor.HttpContext.Items[CurrentContextKeysDictionaryName];
 			}
 			catch (NullReferenceException)
 			{
-				if (HttpContext.Current != null)
+				if (HttpContextAccessor.HttpContext != null)
 					SetCache();
 			}
 			if (cache == null)
-			{
-				try
-				{
-					cache = (IDictionary<string, object>)CallContext.GetData(CurrentContextKeysDictionaryName);
-				}
-				catch (NullReferenceException) { }
-			}
-			return cache ?? SetCache();
+				cache = base.GetCache();
+			return cache;
 		}
 
 		internal override IDictionary<string, object> SetCache(IDictionary<string, object> cache = null)
 		{
 			cache = (cache ?? new ConcurrentDictionary<string, object>());
-			if (HttpContext.Current != null)
-				HttpContext.Current.Items[CurrentContextKeysDictionaryName] = cache;
-			CallContext.SetData(CurrentContextKeysDictionaryName, cache);
+			if (HttpContextAccessor.HttpContext != null)
+				HttpContextAccessor.HttpContext.Items[CurrentContextKeysDictionaryName] = cache;
+			base.SetData(CurrentContextKeysDictionaryName, cache);
 
 			return cache;
 		}

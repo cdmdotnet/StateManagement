@@ -1,21 +1,29 @@
 ﻿#region Copyright
 // // -----------------------------------------------------------------------
-// // <copyright company="cdmdotnet Limited">
-// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // <copyright company="Chinchilla Software Limited">
+// // 	Copyright Chinchilla Software Limited. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
 #endregion
 
-using System.Web;
-using System.Web.SessionState;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using Microsoft.AspNetCore.Http;
 
-namespace cdmdotnet.StateManagement.Web
+namespace Chinchilla.StateManagement.Web
 {
 	/// <summary>
 	/// An instance of <see cref="IContextItemCollection"/> with a user context
 	/// </summary>
 	public class WebUserContextItemCollection : IContextItemCollection
 	{
+		protected IHttpContextAccessor HttpContextAccessor { get; }
+
+		public WebUserContextItemCollection(IHttpContextAccessor httpContextAccessor)
+		{
+			HttpContextAccessor = httpContextAccessor;
+		}
+
 		/// <summary>
 		/// Retrieves an object with the specified name from the <see cref="HttpSessionState"/>
 		/// </summary>
@@ -25,7 +33,18 @@ namespace cdmdotnet.StateManagement.Web
 		/// </returns>
 		public virtual TData GetData<TData>(string name)
 		{
-			return (TData)HttpContext.Current.Session[name];
+			if (HttpContextAccessor.HttpContext.Session.TryGetValue(name, out byte[] value))
+			{
+				using (var stream = new MemoryStream())
+				{
+					var binForm = new BinaryFormatter();
+					stream.Write(value, 0, value.Length);
+					stream.Seek(0, SeekOrigin.Begin);
+					object result = binForm.Deserialize(stream);
+					return (TData)result;
+				}
+			}
+			return default;
 		}
 
 		/// <summary>
@@ -35,7 +54,15 @@ namespace cdmdotnet.StateManagement.Web
 		/// <param name="data">The object to store in the call context.</param>
 		public virtual TData SetData<TData>(string name, TData data)
 		{
-			HttpContext.Current.Session[name] = data;
+			BinaryFormatter bf = new BinaryFormatter();
+			byte[] value;
+			using (var stream = new MemoryStream())
+			{
+				bf.Serialize(stream, data);
+				value = stream.ToArray();
+			}
+
+			HttpContextAccessor.HttpContext.Session.Set(name, value);
 			return data;
 		}
 	}

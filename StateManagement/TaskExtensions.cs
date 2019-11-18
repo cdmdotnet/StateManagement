@@ -1,28 +1,24 @@
 ﻿#region Copyright
 // // -----------------------------------------------------------------------
-// // <copyright company="cdmdotnet Limited">
-// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // <copyright company="Chinchilla Software Limited">
+// // 	Copyright Chinchilla Software Limited. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
 #endregion
 
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
-using cdmdotnet.StateManagement.Web;
+using Chinchilla.StateManagement.Threaded;
 
 // ReSharper disable once CheckNamespace
 // ReSharper disable EmptyGeneralCatchClause
-namespace System
+namespace System.Threading.Tasks
 {
 	/// <summary>
 	/// A set of extension methods to allow a much safer usage of tasks.
 	/// </summary>
 	public static class TaskExtensions
 	{
-
-
 		/// <summary>
 		/// This method will ensure all thread based storage values are copied into the <see cref="Thread"/> used by this <see cref="Task"/>.
 		/// This will ensure logging and eventing will work far more smoothly.
@@ -34,7 +30,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch{ }
 			return taskFactory.StartNew(() =>
@@ -43,7 +39,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -62,7 +58,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(() =>
@@ -71,7 +67,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -90,7 +86,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(() =>
@@ -99,7 +95,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -118,7 +114,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(() =>
@@ -127,7 +123,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -146,7 +142,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -155,7 +151,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -174,7 +170,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -183,7 +179,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -202,7 +198,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -211,7 +207,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -230,7 +226,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -239,7 +235,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -258,7 +254,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(() =>
@@ -267,7 +263,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -286,7 +282,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(() =>
@@ -295,7 +291,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -314,7 +310,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(() =>
@@ -323,7 +319,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -342,7 +338,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(() =>
@@ -351,7 +347,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -370,7 +366,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -379,7 +375,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -398,7 +394,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -407,7 +403,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -426,7 +422,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -435,7 +431,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -454,7 +450,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -463,7 +459,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -482,7 +478,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync(asyncResult, rawResult =>
@@ -491,7 +487,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -510,7 +506,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync(asyncResult, rawResult =>
@@ -519,7 +515,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -538,7 +534,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync(asyncResult, rawResult =>
@@ -547,7 +543,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -565,7 +561,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((callBack, rawState) =>
@@ -574,7 +570,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -585,7 +581,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -603,7 +599,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((callBack, rawState) =>
@@ -612,7 +608,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -623,7 +619,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -641,7 +637,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, callBack, rawState) =>
@@ -650,7 +646,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -661,7 +657,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -679,7 +675,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, callBack, rawState) =>
@@ -688,7 +684,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -699,7 +695,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -717,7 +713,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, callBack, rawState) =>
@@ -726,7 +722,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -737,7 +733,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -755,7 +751,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, callBack, rawState) =>
@@ -764,7 +760,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -775,7 +771,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -793,7 +789,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, args3, callBack, rawState) =>
@@ -802,7 +798,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -813,7 +809,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -831,7 +827,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, args3, callBack, rawState) =>
@@ -840,7 +836,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -851,7 +847,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -870,7 +866,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync(asyncResult, rawResult =>
@@ -879,7 +875,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -898,7 +894,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync(asyncResult, rawResult =>
@@ -907,7 +903,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -926,7 +922,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync(asyncResult, rawResult =>
@@ -935,7 +931,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -953,7 +949,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((callBack, rawState) =>
@@ -962,7 +958,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -973,7 +969,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -991,7 +987,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((callBack, rawState) =>
@@ -1000,7 +996,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1011,7 +1007,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1029,7 +1025,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, callBack, rawState) =>
@@ -1038,7 +1034,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1049,7 +1045,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1067,7 +1063,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, callBack, rawState) =>
@@ -1076,7 +1072,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1087,7 +1083,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1105,7 +1101,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, callBack, rawState) =>
@@ -1114,7 +1110,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1125,7 +1121,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1143,7 +1139,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, callBack, rawState) =>
@@ -1152,7 +1148,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1163,7 +1159,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1181,7 +1177,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, args3, callBack, rawState) =>
@@ -1190,7 +1186,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1201,7 +1197,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1219,7 +1215,7 @@ namespace System
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new WebContextItemCollection().GetCache();
+				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, args3, callBack, rawState) =>
@@ -1228,7 +1224,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1239,7 +1235,7 @@ namespace System
 				{
 					try
 					{
-						new WebContextItemCollection().SetCache(cache);
+						new ContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}

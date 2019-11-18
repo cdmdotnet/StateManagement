@@ -1,14 +1,14 @@
 ﻿#region Copyright
 // // -----------------------------------------------------------------------
-// // <copyright company="cdmdotnet Limited">
-// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // <copyright company="Chinchilla Software Limited">
+// // 	Copyright Chinchilla Software Limited. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
 #endregion
 
 using System.Collections.Generic;
 
-namespace cdmdotnet.StateManagement
+namespace Chinchilla.StateManagement
 {
 	/// <summary>
 	/// An instance of <see cref="IContextItemCollection"/> with a current request context

@@ -1,17 +1,15 @@
 ﻿#region Copyright
 // // -----------------------------------------------------------------------
-// // <copyright company="cdmdotnet Limited">
-// // 	Copyright cdmdotnet Limited. All rights reserved.
+// // <copyright company="Chinchilla Software Limited">
+// // 	Copyright Chinchilla Software Limited. All rights reserved.
 // // </copyright>
 // // -----------------------------------------------------------------------
 #endregion
 
-namespace cdmdotnet.StateManagement.Threaded
+namespace Chinchilla.StateManagement.Basic
 {
-	/// <summary>
-	/// A factory to obtain instances of <see cref="IContextItemCollection"/> from.
-	/// </summary>
-	public class ThreadedContextItemCollectionFactory : IContextItemCollectionFactory
+	/// <summary />
+	public class BasicContextItemCollectionFactory : IContextItemCollectionFactory
 	{
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with a global context
@@ -21,7 +19,7 @@ namespace cdmdotnet.StateManagement.Threaded
 		/// </returns>
 		public virtual IContextItemCollection GetGlobalContext()
 		{
-			return new ThreadedContextItemCollection();
+			return new DictionaryBasedContextItemCollection();
 		}
 
 		/// <summary>
@@ -32,7 +30,7 @@ namespace cdmdotnet.StateManagement.Threaded
 		/// </returns>
 		public virtual IContextItemCollection GetUserContext()
 		{
-			return new ThreadedContextItemCollection();
+			return new DictionaryBasedContextItemCollection();
 		}
 
 		/// <summary>
@@ -43,7 +41,7 @@ namespace cdmdotnet.StateManagement.Threaded
 		/// </returns>
 		public virtual IContextItemCollection GetTransientUserContext()
 		{
-			return new ThreadedContextItemCollection();
+			return new DictionaryBasedContextItemCollection();
 		}
 
 		/// <summary>
@@ -54,7 +52,7 @@ namespace cdmdotnet.StateManagement.Threaded
 		/// </returns>
 		public virtual IContextItemCollection GetCurrentContext()
 		{
-			return new ThreadedContextItemCollection();
+			return new DictionaryBasedContextItemCollection();
 		}
 
 		/// <summary>
@@ -65,7 +63,7 @@ namespace cdmdotnet.StateManagement.Threaded
 		/// </returns>
 		public virtual IContextItemCollection GetIncomingContext()
 		{
-			return new ThreadedContextItemCollection();
+			return new DictionaryBasedContextItemCollection();
 		}
 
 		/// <summary>
@@ -76,7 +74,7 @@ namespace cdmdotnet.StateManagement.Threaded
 		/// </returns>
 		public virtual IContextItemCollection GetOutgoingContext()
 		{
-			return new ThreadedContextItemCollection();
+			return new DictionaryBasedContextItemCollection();
 		}
 	}
 }
