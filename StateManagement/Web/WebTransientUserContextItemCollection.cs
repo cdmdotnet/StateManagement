@@ -1,4 +1,5 @@
-﻿#region Copyright
+﻿#if NETCOREAPP3_0
+#region Copyright
 // // -----------------------------------------------------------------------
 // // <copyright company="Chinchilla Software Limited">
 // // 	Copyright Chinchilla Software Limited. All rights reserved.
@@ -15,8 +16,14 @@ namespace Chinchilla.StateManagement.Web
 	/// </summary>
 	public class WebTransientUserContextItemCollection : IContextItemCollection
 	{
+		/// <summary>
+		/// The reference to the internal storage cache.
+		/// </summary>
 		protected IHttpContextAccessor HttpContextAccessor { get; }
 
+		/// <summary>
+		/// Instantiates a new instance of the <see cref="WebTransientUserContextItemCollection"/> class.
+		/// </summary>
 		public WebTransientUserContextItemCollection(IHttpContextAccessor httpContextAccessor)
 		{
 			HttpContextAccessor = httpContextAccessor;
@@ -38,7 +45,7 @@ namespace Chinchilla.StateManagement.Web
 		}
 
 		/// <summary>
-		/// Stores a given object and associates it with the specified name in the <see cref="IResponseCookieCollection"/>
+		/// Stores a given object and associates it with the specified name in the <see cref="IResponseCookies"/>
 		/// </summary>
 		/// <param name="name">The name with which to associate the new item in the call context.</param>
 		/// <param name="data">The object to store in the call context.</param>
@@ -49,3 +56,4 @@ namespace Chinchilla.StateManagement.Web
 		}
 	}
 }
+#endif

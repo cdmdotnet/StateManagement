@@ -1,4 +1,5 @@
-﻿#region Copyright
+﻿#if NET40
+#region Copyright
 // // -----------------------------------------------------------------------
 // // <copyright company="cdmdotnet Limited">
 // // 	Copyright cdmdotnet Limited. All rights reserved.
@@ -30,3 +31,4 @@ namespace Chinchilla.StateManagement.Web
 		object SetData(string name, object data, CacheDependency dependencies, DateTime absoluteExpiration, TimeSpan slidingExpiration, CacheItemPriority priority, CacheItemRemovedCallback onRemoveCallback);
 	}
 }
+#endif

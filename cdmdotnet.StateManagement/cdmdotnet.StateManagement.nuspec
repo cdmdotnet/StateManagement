@@ -4,10 +4,10 @@
 		<id>Chinchilla.StateManagement</id>
 		<title>C# State Management</title>
 		<version>$version$</version>
-		<licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+		<license type="expression">Apache-2.0</license>
 		<projectUrl>https://github.com/cdmdotnet/StateManagement</projectUrl>
 		<authors>Chinchilla Software Limited</authors>
-		<iconUrl>https://raw.githubusercontent.com/Chinchilla-Software-Com/CQRS/master/wiki/ChinChilla-Software-Red.png</iconUrl>
+		<icon>images\icon.png</icon>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>
 			C# State Management provides a consistent abstraction for accessing data from various collections such as thread bound contexts, HTTP Request and Response collections as well as HTTP Cookies.
@@ -16,11 +16,14 @@
 		<releaseNotes>
 			Version 4.0.0
 
-			* Added a .NET Core 3.0 support.
+			* Added .NET Core 3.0 support.
 
 			Breaking Changes
 
 			* TasksExtensions moved from the System namespace to the System.Threading.Tasks namespace
+			* Threaded.Threaded* classes have been renamed to Threaded.*
+			* Threaded.ContextItemCollectionFactory now throws NotSupportedException in-place of using an inappriorate collection.
+			* Cache support has been removed for .NET Core.
 
 			Version 3.0.11
 
@@ -31,22 +34,28 @@
 			* Switched to using an internal dictionary for controlling the passing of the data within a thread to thread situation such as when using Parallel Tasks.
 		</releaseNotes>
 		<frameworkAssemblies>
-			<frameworkAssembly assemblyName="System.Web" targetFramework="net40" />
-			<frameworkAssembly assemblyName="System.Runtime.Caching" targetFramework="net40" />
+			<frameworkAssembly assemblyName="System.Web" targetFramework=".NetFramework4.0" />
+			<frameworkAssembly assemblyName="System.Runtime.Caching" targetFramework=".NetFramework4.0" />
 		</frameworkAssemblies>
 		<dependencies>
-			<group targetFramework="netcoreapp3.0">
+			<group targetFramework=".NetFramework4.0" />
+			<!--
+			<group targetFramework=".NetCoreApp3.0">
 				<dependency id="Microsoft.AspNetCore.Http.Abstractions" version="2.2.0" />
 				<dependency id="System.Runtime.Caching" version="4.6.0" />
 			</group>
+			-->
 		</dependencies>
 	</metadata>
 	<files>
+		<!--
 		<file src="bin\Release\*.dll" target="lib\net40" />
 		<file src="bin\Release\*.pdb" target="lib\net40" />
 		<file src="bin\Release\*.xml" target="lib\net40" />
-		<file src="..\StateManagement\bin\Release\*.dll" target="lib\netcoreapp3.0" />
-		<file src="..\StateManagement\bin\Release\*.pdb" target="lib\netcoreapp3.0" />
-		<file src="..\StateManagement\bin\Release\*.xml" target="lib\netcoreapp3.0" />
+		<file src="..\StateManagement\bin\Release\netcoreapp3.0\*.dll" target="lib\netcoreapp3.0" />
+		<file src="..\StateManagement\bin\Release\netcoreapp3.0\*.pdb" target="lib\netcoreapp3.0" />
+		<file src="..\StateManagement\bin\Release\netcoreapp3.0\*.xml" target="lib\netcoreapp3.0" />
+		-->
+		<file src="..\icon.png" target="images\" />
 	</files>
 </package>

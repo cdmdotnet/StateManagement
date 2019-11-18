@@ -1,4 +1,5 @@
-﻿#region Copyright
+﻿#if NET40
+#region Copyright
 // // -----------------------------------------------------------------------
 // // <copyright company="cdmdotnet Limited">
 // // 	Copyright cdmdotnet Limited. All rights reserved.
@@ -33,7 +34,7 @@ namespace Chinchilla.StateManagement.Web
 		/// The object in the internal cache associated with the specified name.
 		/// </returns>
 		/// <remarks>
-		/// The usage of checking also checking outside of <see cref="HttpContext.Items"/>, is that when you use a <see cref="Task"/>, it has not access to <see cref="HttpContext.Current"/>.
+		/// The usage of checking also checking outside of <see cref="HttpContext.Items"/>, is that when you use a <see cref="Task"/>, it has no access to <see cref="HttpContext.Current"/>.
 		/// </remarks>
 		public override TData GetData<TData>(string name)
 		{
@@ -90,3 +91,4 @@ namespace Chinchilla.StateManagement.Web
 		}
 	}
 }
+#endif

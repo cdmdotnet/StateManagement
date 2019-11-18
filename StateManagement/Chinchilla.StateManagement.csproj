@@ -1,39 +1,92 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <Authors>Chinchilla Software</Authors>
-    <Description>Chinchilla.StateManagement is a .NET Core port of cdmdotnet.StateManagement, a C# state management framework that provides a consistent abstraction for accessing data from various collections such as thread bound contexts, HTTP Request and Response collections as well as HTTP Cookies.</Description>
-    <Copyright>Copyright ©  2019</Copyright>
-    <PackageLicenseFile>..\LICENSE</PackageLicenseFile>
-    <PackageProjectUrl>https://github.com/cdmdotnet/StateManagement</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/cdmdotnet/StateManagement</RepositoryUrl>
-    <PackageReleaseNotes>Ported from cdmdotnet Limited</PackageReleaseNotes>
-    <PackageIconUrl>https://raw.githubusercontent.com/Chinchilla-Software-Com/CQRS/master/wiki/ChinChilla-Software-Red.png</PackageIconUrl>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.0</TargetFramework>
+		<Authors>Chinchilla Software</Authors>
+		<Description>Chinchilla.StateManagement is a .NET Core port of cdmdotnet.StateManagement, a C# state management framework that provides a consistent abstraction for accessing data from various collections such as thread bound contexts, HTTP Request and Response collections as well as HTTP Cookies.</Description>
+		<Copyright>Copyright ©  2019</Copyright>
+		<PackageLicenseFile></PackageLicenseFile>
+		<PackageProjectUrl>https://github.com/cdmdotnet/StateManagement</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/cdmdotnet/StateManagement</RepositoryUrl>
+		<PackageReleaseNotes>
+			Version 4.0.0
 
-  <ItemGroup>
-    <Compile Remove="Properties\AssemblyInfo.cs" />
-    <Compile Remove="Web\IWebContextCacheItemCollection.cs" />
-    <Compile Remove="Web\WebContextCacheItemCollection.cs" />
-  </ItemGroup>
+			* Added .NET Core 3.0 support.
 
-  <ItemGroup>
-    <None Remove=".gitattributes" />
-    <None Remove=".gitignore" />
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+			Breaking Changes
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-    <PackageReference Include="System.Runtime.Caching" Version="4.6.0" />
-  </ItemGroup>
+			* TasksExtensions moved from the System namespace to the System.Threading.Tasks namespace
+			* Threaded.Threaded* classes have been renamed to Threaded.*
+			* Threaded.ContextItemCollectionFactory now throws NotSupportedException in-place of using an inappriorate collection.
+			* Cache support has been removed for .NET Core.
 
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
+			Version 3.0.11
+
+			* Added a threaded based MemoryCache implementation of IContextCacheItemCollection.
+
+			Version 3.0.6
+
+			* Switched to using an internal dictionary for controlling the passing of the data within a thread to thread situation such as when using Parallel Tasks.</PackageReleaseNotes>
+		<PackageIcon>images\icon.png</PackageIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\icon.png" Link="icon.png">
+			<Pack>True</Pack>
+			<PackagePath>images\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<PropertyGroup>
+		<OutputType>library</OutputType>
+		<TargetFrameworks>netcoreapp3.0;net40</TargetFrameworks>
+		<DocumentationFile>Chinchilla.StateManagement.xml</DocumentationFile>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="cdmdotnet.StateManagement\Basic\**" />
+	  <Compile Remove="cdmdotnet.StateManagement\bin\**" />
+	  <Compile Remove="cdmdotnet.StateManagement\obj\**" />
+	  <Compile Remove="cdmdotnet.StateManagement\Properties\**" />
+	  <EmbeddedResource Remove="cdmdotnet.StateManagement\Basic\**" />
+	  <EmbeddedResource Remove="cdmdotnet.StateManagement\bin\**" />
+	  <EmbeddedResource Remove="cdmdotnet.StateManagement\obj\**" />
+	  <EmbeddedResource Remove="cdmdotnet.StateManagement\Properties\**" />
+	  <None Remove="cdmdotnet.StateManagement\Basic\**" />
+	  <None Remove="cdmdotnet.StateManagement\bin\**" />
+	  <None Remove="cdmdotnet.StateManagement\obj\**" />
+	  <None Remove="cdmdotnet.StateManagement\Properties\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="cdmdotnet.StateManagement\ContextItemCollection.cs" />
+		<Compile Remove="cdmdotnet.StateManagement\IContextCacheItemCollection.cs" />
+		<Compile Remove="cdmdotnet.StateManagement\IContextItemCollection.cs" />
+		<Compile Remove="cdmdotnet.StateManagement\IContextItemCollectionFactory.cs" />
+		<Compile Remove="Properties\AssemblyInfo.cs" />
+		<Compile Remove="Web\IWebContextCacheItemCollection.cs" />
+		<Compile Remove="Web\WebContextCacheItemCollection.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove=".gitattributes" />
+		<None Remove=".gitignore" />
+		<None Remove="cdmdotnet.StateManagement\Chinchilla.StateManagement.4.0.0.nupkg" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.0' ">
+		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+		<PackageReference Include="System.Runtime.Caching" Version="4.6.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
+		<Reference Include="System.Web" />
+		<Reference Include="System.Runtime.Caching" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Properties\" />
+	</ItemGroup>
 
 </Project>

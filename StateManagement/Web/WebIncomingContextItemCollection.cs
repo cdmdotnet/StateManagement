@@ -1,4 +1,5 @@
-﻿#region Copyright
+﻿#if NETCOREAPP3_0
+#region Copyright
 // // -----------------------------------------------------------------------
 // // <copyright company="Chinchilla Software Limited">
 // // 	Copyright Chinchilla Software Limited. All rights reserved.
@@ -15,8 +16,14 @@ namespace Chinchilla.StateManagement.Web
 	/// </summary>
 	public class WebIncomingContextItemCollection : IContextItemCollection
 	{
+		/// <summary>
+		/// The reference to the internal storage cache.
+		/// </summary>
 		protected IHttpContextAccessor HttpContextAccessor { get; }
 
+		/// <summary>
+		/// Instantiates a new instance of the <see cref="WebIncomingContextItemCollection"/> class.
+		/// </summary>
 		public WebIncomingContextItemCollection(IHttpContextAccessor httpContextAccessor)
 		{
 			HttpContextAccessor = httpContextAccessor;
@@ -48,3 +55,4 @@ namespace Chinchilla.StateManagement.Web
 		}
 	}
 }
+#endif

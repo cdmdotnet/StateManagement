@@ -1,4 +1,5 @@
-﻿#region Copyright
+﻿#if NETCOREAPP3_0
+#region Copyright
 // // -----------------------------------------------------------------------
 // // <copyright company="Chinchilla Software Limited">
 // // 	Copyright Chinchilla Software Limited. All rights reserved.
@@ -7,7 +8,6 @@
 #endregion
 
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
 
 namespace Chinchilla.StateManagement.Threaded
 {
@@ -22,7 +22,7 @@ namespace Chinchilla.StateManagement.Threaded
 		protected static IDictionary<string, object> Storage { get; private set; }
 
 		/// <summary>
-		/// Retrieves an object with the specified name from the <see cref="HttpContext.app"/>
+		/// Retrieves an object with the specified name from static property.
 		/// </summary>
 		/// <param name="name">The name of the item in the call context.</param>
 		/// <returns>
@@ -52,3 +52,4 @@ namespace Chinchilla.StateManagement.Threaded
 		}
 	}
 }
+#endif

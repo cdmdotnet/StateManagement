@@ -1,4 +1,5 @@
-﻿#region Copyright
+﻿#if NET40
+#region Copyright
 // // -----------------------------------------------------------------------
 // // <copyright company="cdmdotnet Limited">
 // // 	Copyright cdmdotnet Limited. All rights reserved.
@@ -14,11 +15,11 @@ using System.Runtime.Remoting.Messaging;
 namespace Chinchilla.StateManagement.Threaded
 {
 	/// <summary />
-	public class ThreadedContextItemCollection : ContextItemCollection
+	public class ContextItemCollection : StateManagement.ContextItemCollection
 	{
 		// ReSharper disable RedundantOverridenMember
 		/// <summary>
-		/// Retrieves an object with the specified <paramref name="name"/> from an internal collection in <see cref="System.Runtime.Remoting.Messaging.CallContext"/>.
+		/// Retrieves an object with the specified <paramref name="name"/> from an internal collection in <see cref="CallContext"/>.
 		/// </summary>
 		/// <param name="name">The name of the item in the internal cache.</param>
 		/// <returns>
@@ -30,7 +31,7 @@ namespace Chinchilla.StateManagement.Threaded
 		}
 
 		/// <summary>
-		/// Stores the given <paramref name="data"/> with the specified <paramref name="name"/> to an internal collection in <see cref="System.Runtime.Remoting.Messaging.CallContext"/>.
+		/// Stores the given <paramref name="data"/> with the specified <paramref name="name"/> to an internal collection in <see cref="CallContext"/>.
 		/// </summary>
 		/// <param name="name">The name with which to associate the new item in the internal cache.</param>
 		/// <param name="data">The object to store in the internal cache.</param>
@@ -63,3 +64,4 @@ namespace Chinchilla.StateManagement.Threaded
 		}
 	}
 }
+#endif

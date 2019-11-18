@@ -1,4 +1,5 @@
-﻿#region Copyright
+﻿#if NETCOREAPP3_0
+#region Copyright
 // // -----------------------------------------------------------------------
 // // <copyright company="Chinchilla Software Limited">
 // // 	Copyright Chinchilla Software Limited. All rights reserved.
@@ -20,8 +21,15 @@ namespace Chinchilla.StateManagement.Web
 	/// </summary>
 	public class WebContextItemCollection : Threaded.ContextItemCollection
 	{
+		/// <summary>
+		/// The reference to the internal storage cache.
+		/// </summary>
 		protected IHttpContextAccessor HttpContextAccessor { get; }
 
+
+		/// <summary>
+		/// Instantiates a new instance of the <see cref="WebContextItemCollection"/> class.
+		/// </summary>
 		public WebContextItemCollection(IHttpContextAccessor httpContextAccessor)
 		{
 			HttpContextAccessor = httpContextAccessor;
@@ -39,7 +47,7 @@ namespace Chinchilla.StateManagement.Web
 		/// The object in the internal cache associated with the specified name.
 		/// </returns>
 		/// <remarks>
-		/// The usage of checking also checking outside of <see cref="HttpContext.Items"/>, is that when you use a <see cref="Task"/>, it has not access to <see cref="HttpContext.Current"/>.
+		/// The usage of checking also checking outside of <see cref="HttpContext.Items"/>, is that when you use a <see cref="Task"/>, it has no access to <see cref="IHttpContextAccessor.HttpContext"/>.
 		/// </remarks>
 		public override TData GetData<TData>(string name)
 		{
@@ -90,3 +98,4 @@ namespace Chinchilla.StateManagement.Web
 		}
 	}
 }
+#endif

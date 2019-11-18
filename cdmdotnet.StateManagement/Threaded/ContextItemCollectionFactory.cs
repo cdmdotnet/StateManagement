@@ -1,4 +1,5 @@
-﻿#region Copyright
+﻿#if NET40
+#region Copyright
 // // -----------------------------------------------------------------------
 // // <copyright company="cdmdotnet Limited">
 // // 	Copyright cdmdotnet Limited. All rights reserved.
@@ -6,12 +7,14 @@
 // // -----------------------------------------------------------------------
 #endregion
 
+using System;
+
 namespace Chinchilla.StateManagement.Threaded
 {
 	/// <summary>
 	/// A factory to obtain instances of <see cref="IContextItemCollection"/> from.
 	/// </summary>
-	public class ThreadedContextItemCollectionFactory : IContextItemCollectionFactory
+	public class ContextItemCollectionFactory : IContextItemCollectionFactory
 	{
 		/// <summary>
 		/// Gets an instance of <see cref="IContextItemCollection"/> with a global context
@@ -21,7 +24,7 @@ namespace Chinchilla.StateManagement.Threaded
 		/// </returns>
 		public virtual IContextItemCollection GetGlobalContext()
 		{
-			return new ThreadedContextItemCollection();
+			return new ContextItemCollection();
 		}
 
 		/// <summary>
@@ -32,7 +35,7 @@ namespace Chinchilla.StateManagement.Threaded
 		/// </returns>
 		public virtual IContextItemCollection GetUserContext()
 		{
-			return new ThreadedContextItemCollection();
+			throw new NotSupportedException("The user context is not support without over-riding.");
 		}
 
 		/// <summary>
@@ -43,7 +46,7 @@ namespace Chinchilla.StateManagement.Threaded
 		/// </returns>
 		public virtual IContextItemCollection GetTransientUserContext()
 		{
-			return new ThreadedContextItemCollection();
+			throw new NotSupportedException("The transient user context is not support without over-riding.");
 		}
 
 		/// <summary>
@@ -54,7 +57,7 @@ namespace Chinchilla.StateManagement.Threaded
 		/// </returns>
 		public virtual IContextItemCollection GetCurrentContext()
 		{
-			return new ThreadedContextItemCollection();
+			return new ContextItemCollection();
 		}
 
 		/// <summary>
@@ -65,7 +68,7 @@ namespace Chinchilla.StateManagement.Threaded
 		/// </returns>
 		public virtual IContextItemCollection GetIncomingContext()
 		{
-			return new ThreadedContextItemCollection();
+			throw new NotSupportedException("The incoming context is not support without over-riding.");
 		}
 
 		/// <summary>
@@ -76,7 +79,8 @@ namespace Chinchilla.StateManagement.Threaded
 		/// </returns>
 		public virtual IContextItemCollection GetOutgoingContext()
 		{
-			return new ThreadedContextItemCollection();
+			throw new NotSupportedException("The outgoing context is not support without over-riding.");
 		}
 	}
 }
+#endif

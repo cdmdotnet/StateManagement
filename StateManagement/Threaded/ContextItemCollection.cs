@@ -1,4 +1,5 @@
-﻿#region Copyright
+﻿#if NETCOREAPP3_0
+#region Copyright
 // // -----------------------------------------------------------------------
 // // <copyright company="Chinchilla Software Limited">
 // // 	Copyright Chinchilla Software Limited. All rights reserved.
@@ -22,7 +23,7 @@ namespace Chinchilla.StateManagement.Threaded
 
 		// ReSharper disable RedundantOverridenMember
 		/// <summary>
-		/// Retrieves an object with the specified <paramref name="name"/> from an internal collection in <see cref="System.Runtime.Remoting.Messaging.CallContext"/>.
+		/// Retrieves an object with the specified <paramref name="name"/> from an internal collection in <see cref="ThreadLocal{T}"/>.
 		/// </summary>
 		/// <param name="name">The name of the item in the internal cache.</param>
 		/// <returns>
@@ -34,7 +35,7 @@ namespace Chinchilla.StateManagement.Threaded
 		}
 
 		/// <summary>
-		/// Stores the given <paramref name="data"/> with the specified <paramref name="name"/> to an internal collection in <see cref="System.Runtime.Remoting.Messaging.CallContext"/>.
+		/// Stores the given <paramref name="data"/> with the specified <paramref name="name"/> to an internal collection in <see cref="ThreadLocal{T}"/>.
 		/// </summary>
 		/// <param name="name">The name with which to associate the new item in the internal cache.</param>
 		/// <param name="data">The object to store in the internal cache.</param>
@@ -69,3 +70,4 @@ namespace Chinchilla.StateManagement.Threaded
 		}
 	}
 }
+#endif

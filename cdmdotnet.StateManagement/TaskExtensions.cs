@@ -1,4 +1,5 @@
-﻿#region Copyright
+﻿#if NET40
+#region Copyright
 // // -----------------------------------------------------------------------
 // // <copyright company="cdmdotnet Limited">
 // // 	Copyright cdmdotnet Limited. All rights reserved.
@@ -1249,3 +1250,4 @@ namespace System.Threading.Tasks
 	}
 }
 // ReSharper restore EmptyGeneralCatchClause
+#endif

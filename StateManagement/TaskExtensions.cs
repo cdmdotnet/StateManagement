@@ -1,4 +1,5 @@
-﻿#region Copyright
+﻿#if NETCOREAPP3_0
+#region Copyright
 // // -----------------------------------------------------------------------
 // // <copyright company="Chinchilla Software Limited">
 // // 	Copyright Chinchilla Software Limited. All rights reserved.
@@ -1245,3 +1246,4 @@ namespace System.Threading.Tasks
 	}
 }
 // ReSharper restore EmptyGeneralCatchClause
+#endif

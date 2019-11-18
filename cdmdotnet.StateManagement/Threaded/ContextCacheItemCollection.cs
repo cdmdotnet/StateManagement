@@ -1,4 +1,5 @@
-﻿#region Copyright
+﻿#if NET40
+#region Copyright
 // // -----------------------------------------------------------------------
 // // <copyright company="cdmdotnet Limited">
 // // 	Copyright cdmdotnet Limited. All rights reserved.
@@ -13,7 +14,7 @@ using System.Web.Caching;
 namespace Chinchilla.StateManagement.Threaded
 {
 	/// <summary />
-	public class ThreadedContextCacheItemCollection : IContextCacheItemCollection
+	public class ContextCacheItemCollection : IContextCacheItemCollection
 	{
 		/// <summary>
 		/// Retrieves an object with the specified name from the System.Runtime.Remoting.Messaging.CallContext.
@@ -51,3 +52,4 @@ namespace Chinchilla.StateManagement.Threaded
 		}
 	}
 }
+#endif
