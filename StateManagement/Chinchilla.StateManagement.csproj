@@ -18,7 +18,7 @@
 
 			* TasksExtensions moved from the System namespace to the System.Threading.Tasks namespace
 			* Threaded.Threaded* classes have been renamed to Threaded.*
-			* Threaded.ContextItemCollectionFactory now throws NotSupportedException in-place of using an inappriorate collection.
+			* Threaded.ContextItemCollectionFactory now throws NotSupportedException in-place of using an inappropriate collection.
 			* Cache support has been removed for .NET Core.
 
 			Version 3.0.11
