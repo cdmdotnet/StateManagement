@@ -87,6 +87,24 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Include="..\cdmdotnet.StateManagement\TaskExtensions.cs" Link="net40\TaskExtensions.cs" />
+	  <Compile Include="..\cdmdotnet.StateManagement\Threaded\ContextCacheItemCollection.cs" Link="net40\Threaded\ContextCacheItemCollection.cs" />
+	  <Compile Include="..\cdmdotnet.StateManagement\Threaded\ContextItemCollection.cs" Link="net40\Threaded\ContextItemCollection.cs" />
+	  <Compile Include="..\cdmdotnet.StateManagement\Threaded\ContextItemCollectionFactory.cs" Link="net40\Threaded\ContextItemCollectionFactory.cs" />
+	  <Compile Include="..\cdmdotnet.StateManagement\Web\IWebContextCacheItemCollection.cs" Link="net40\Web\IWebContextCacheItemCollection.cs" />
+	  <Compile Include="..\cdmdotnet.StateManagement\Web\WebContextCacheItemCollection.cs" Link="net40\Web\WebContextCacheItemCollection.cs" />
+	  <Compile Include="..\cdmdotnet.StateManagement\Web\WebContextItemCollection.cs" Link="net40\Web\WebContextItemCollection.cs" />
+	  <Compile Include="..\cdmdotnet.StateManagement\Web\WebContextItemCollectionFactory.cs" Link="net40\Web\WebContextItemCollectionFactory.cs" />
+	  <Compile Include="..\cdmdotnet.StateManagement\Web\WebGlobalContextItemCollection.cs" Link="net40\Web\WebGlobalContextItemCollection.cs" />
+	  <Compile Include="..\cdmdotnet.StateManagement\Web\WebIncomingContextItemCollection.cs" Link="net40\Web\WebIncomingContextItemCollection.cs" />
+	  <Compile Include="..\cdmdotnet.StateManagement\Web\WebOutgoingContextItemCollection.cs" Link="net40\Web\WebOutgoingContextItemCollection.cs" />
+	  <Compile Include="..\cdmdotnet.StateManagement\Web\WebTransientUserContextItemCollection.cs" Link="net40\Web\WebTransientUserContextItemCollection.cs" />
+	  <Compile Include="..\cdmdotnet.StateManagement\Web\WebUserContextItemCollection.cs" Link="net40\Web\WebUserContextItemCollection.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="net40\Web\" />
+		<Folder Include="net40\Threaded\" />
 		<Folder Include="Properties\" />
 	</ItemGroup>
 
