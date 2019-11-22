@@ -5,6 +5,7 @@ param($installPath, $toolsPath, $package, $project)
 
 try
 {
+  $clientPublicKey = "54BDD3F2F0864FE3B700127FC33714D7";
   $url = "Unknown/Unknown/Unknown"
   $SafePassword = "Unknown"
   try
@@ -38,7 +39,7 @@ try
   catch{}
 
   Add-Type -AssemblyName System.Web
-  $url = "http://api.analytics.chinchillasoftware.com/NuGet/Install/" + [System.Web.HttpUtility]::UrlEncode($package.Id) + "/?track=" + [System.Web.HttpUtility]::UrlEncode($SafePassword)
+  $url = "http://api.analytics.chinchillasoftware.com/" + $clientPublicKey + "/NuGet/Install/" + [System.Web.HttpUtility]::UrlEncode($package.Id) + "/?track=" + [System.Web.HttpUtility]::UrlEncode($SafePassword)
 
 echo $url
 
