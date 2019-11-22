@@ -51,6 +51,7 @@ try
   catch{
     $url = $url + "/Unknown"
   }
+  try
   {
     $url = $url + "/" + $dte.Edition
   }

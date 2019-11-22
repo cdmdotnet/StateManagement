@@ -17,7 +17,7 @@ try
   }
   try
   {
-    $url = $url + "/" + $package.Version
+    $url = ($url + "/" + $package.Version)
   }
   catch{
     $url = $url + "/Unknown"
@@ -25,7 +25,7 @@ try
   $url = $url + "/Unknown"
    try
   {
-    $url = $url + "/" + $dte.Solution.FullName
+    $url = ($url + "/" + $dte.Solution.FullName)
   }
   catch{
     $url = $url + "/Unknown"
@@ -33,20 +33,21 @@ try
 
   try
   {
-    $url = $url + "/" + $dte.Name
+    $url = ($url + "/" + $dte.Name)
   }
   catch{
     $url = $url + "/Unknown"
   }
   try
   {
-    $url = $url + "/" + $dte.Version
+    $url = ($url + "/" + $dte.Version)
   }
   catch{
     $url = $url + "/Unknown"
   }
+  try
   {
-    $url = $url + "/" + $dte.Edition
+    $url = ($url + "/" + $dte.Edition)
   }
   catch{
     $url = $url + "/Unknown"
