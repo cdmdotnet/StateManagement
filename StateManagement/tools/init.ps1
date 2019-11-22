@@ -1,4 +1,4 @@
-param($installPath, $toolsPath, $package, $project)
+param($installPath, $toolsPath, $package)
 
 # open CS-CQRS splash page on package install
 # don't open if the package is installed as a dependency
@@ -21,13 +21,7 @@ try
   catch{
     $url = $url + "/Unknown"
   }
-  try
-  {
-    $url = $url + "/" + $project.Name
-  }
-  catch{
-    $url = $url + "/Unknown"
-  }
+ $url = $url + "/Unknown"
 
   try
   {
