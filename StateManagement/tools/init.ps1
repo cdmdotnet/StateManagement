@@ -22,7 +22,35 @@ try
   catch{
     $url = $url + "/Unknown"
   }
- $url = $url + "/Unknown"
+  $url = $url + "/Unknown"
+   try
+  {
+    $url = $url + "/" + $dte.Solution.FullName
+  }
+  catch{
+    $url = $url + "/Unknown"
+  }
+
+  try
+  {
+    $url = $url + "/" + $dte.Name
+  }
+  catch{
+    $url = $url + "/Unknown"
+  }
+  try
+  {
+    $url = $url + "/" + $dte.Version
+  }
+  catch{
+    $url = $url + "/Unknown"
+  }
+  {
+    $url = $url + "/" + $dte.Edition
+  }
+  catch{
+    $url = $url + "/Unknown"
+  }
 
   try
   {
@@ -35,7 +63,7 @@ try
   Add-Type -AssemblyName System.Web
   $url = "http://api.analytics.chinchillasoftware.com/" + $clientPublicKey + "/NuGet/Install/" + [System.Web.HttpUtility]::UrlEncode($package.Id) + "/?track=" + [System.Web.HttpUtility]::UrlEncode($SafePassword)
 
-echo $url
+ echo $url
 
   $dte2 = Get-Interface $dte ([EnvDTE80.DTE2])
 
