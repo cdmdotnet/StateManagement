@@ -62,7 +62,7 @@ try
   catch{}
 
   Add-Type -AssemblyName System.Web
-  $url = "https://api.analytics.chinchillasoftware.com/" + $clientPublicKey + "/NuGet/Install/" + [System.Web.HttpUtility]::UrlEncode($package.Id) + "/?noContent=false&track=" + [System.Web.HttpUtility]::UrlEncode($SafePassword)
+  $url = "https://api.analytics.chinchillasoftware.com/" + $clientPublicKey + "/NuGet/Install/" + [System.Web.HttpUtility]::UrlEncode($package.Id) + "/?noContent=true&track=" + [System.Web.HttpUtility]::UrlEncode($SafePassword)
 
   # echo $url
 
