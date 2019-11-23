@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netcoreapp3.0;net40</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
 		<Authors>Chinchilla Software</Authors>
 		<Company>Chinchilla Software</Company>
 		<Description>Chinchilla.StateManagement is a .NET Core port of cdmdotnet.StateManagement, a C# state management framework that provides a consistent abstraction for accessing data from various collections such as thread bound contexts, HTTP Request and Response collections as well as HTTP Cookies.</Description>
@@ -10,9 +10,13 @@
 		<PackageProjectUrl>https://github.com/cdmdotnet/StateManagement</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/cdmdotnet/StateManagement</RepositoryUrl>
 		<PackageReleaseNotes>
+			Version 4.1.0
+
+			* Switched to .NET Standard 2.0 support from .NET Core 3.0.
+
 			Version 4.0.0
 
-			* Added .NET Core 3.0 support.
+			* Added .NET Core 2.0 support.
 
 			Breaking Changes
 
@@ -51,7 +55,7 @@
 
 	<PropertyGroup>
 		<OutputType>library</OutputType>
-		<TargetFrameworks>netcoreapp3.0;net40</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
 		<DocumentationFile>Chinchilla.StateManagement.xml</DocumentationFile>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 	</PropertyGroup>
@@ -87,9 +91,9 @@
 		<None Remove="cdmdotnet.StateManagement\Chinchilla.StateManagement.4.0.0.nupkg" />
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.0' ">
-		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
 		<PackageReference Include="System.Runtime.Caching" Version="4.6.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">

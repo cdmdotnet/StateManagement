@@ -1,4 +1,4 @@
-﻿#if NETCOREAPP3_0
+﻿#if NETSTANDARD2_0
 #region Copyright
 // // -----------------------------------------------------------------------
 // // <copyright company="Chinchilla Software Limited">
