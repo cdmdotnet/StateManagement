@@ -16,7 +16,7 @@
 
 			Version 4.0.0
 
-			* Added .NET Core 2.0 support.
+			* Added .NET Core 3.0 support.
 
 			Breaking Changes
 
@@ -89,6 +89,7 @@
 		<None Remove=".gitattributes" />
 		<None Remove=".gitignore" />
 		<None Remove="cdmdotnet.StateManagement\Chinchilla.StateManagement.4.0.0.nupkg" />
+		<None Remove="Chinchilla.StateManagement.xml" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
