@@ -19,7 +19,7 @@ jobs:
         cd .\.nuget
         ren NuGet.ex_ NuGet.exe
         cd ..
-        .nuget\NuGet.exe restore Chinchilla.Logging.sln
+        .nuget\NuGet.exe restore Chinchilla.StateManagement.sln
     - name: Build with dotnet CLI
       run: dotnet build --configuration Release .\Chinchilla.StateManagement.sln
     - name: Pack with dotnet CLI
