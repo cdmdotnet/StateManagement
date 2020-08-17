@@ -49,7 +49,7 @@ namespace System.Threading.Tasks
 		/// This will ensure logging and eventing will work far more smoothly.
 		/// </summary>
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		public static ParallelLoopResult ForEach<TSource, TLocal>(IEnumerable<TSource> source, ParallelOptions parallelOptions, Action<TSource> body)
+		public static ParallelLoopResult ForEach<TSource>(IEnumerable<TSource> source, ParallelOptions parallelOptions, Action<TSource> body)
 		{
 			IDictionary<string, object> cache = null;
 			try
