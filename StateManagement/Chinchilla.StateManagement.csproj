@@ -34,7 +34,16 @@
 
 			* Switched to using an internal dictionary for controlling the passing of the data within a thread to thread situation such as when using Parallel Tasks.</PackageReleaseNotes>
 		<PackageIcon>images\icon.png</PackageIcon>
-	</PropertyGroup>
+	
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
 
 	<ItemGroup>
 		<None Include="tools\init.ps1">
