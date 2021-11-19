@@ -297,7 +297,7 @@ namespace System.Threading.Tasks
 					catch { }
 				}
 				await asyncAction();
-			}, cancellationToken);
+			}, cancellationToken).Result;
 		}
 
 		/// <summary>
@@ -325,7 +325,7 @@ namespace System.Threading.Tasks
 					catch { }
 				}
 				await asyncAction();
-			}, creationOptions);
+			}, creationOptions).Result;
 		}
 
 		/// <summary>
@@ -353,7 +353,7 @@ namespace System.Threading.Tasks
 					catch { }
 				}
 				await asyncAction();
-			}, cancellationToken, creationOptions, scheduler);
+			}, cancellationToken, creationOptions, scheduler).Result;
 		}
 
 		/// <summary>
