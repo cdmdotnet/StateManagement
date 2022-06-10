@@ -9,6 +9,7 @@
 
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace Chinchilla.StateManagement.Threaded
@@ -19,7 +20,7 @@ namespace Chinchilla.StateManagement.Threaded
 		/// <summary>
 		/// The reference to the internal storage cache.
 		/// </summary>
-		protected static ThreadLocal<IDictionary<string, object>> Cache { get; private set; }
+		protected static ThreadLocal<IDictionary<string, IDictionary<string, object>>> Cache { get; private set; }
 
 		// ReSharper disable RedundantOverridenMember
 		/// <summary>
@@ -55,7 +56,7 @@ namespace Chinchilla.StateManagement.Threaded
 			{
 				var _cache = Cache;
 				if (_cache != null)
-					cache = _cache.Value;
+					cache = _cache.Values.Single(x => x.ContainsKey("Chinchilla.StateManagement.Threaded.ContextItemCollection"))["Chinchilla.StateManagement.Threaded.ContextItemCollection"];
 			}
 			catch { }
 			return cache ?? SetCache();
@@ -63,8 +64,23 @@ namespace Chinchilla.StateManagement.Threaded
 
 		internal override IDictionary<string, object> SetCache(IDictionary<string, object> cache = null)
 		{
-			cache = (cache ?? new ConcurrentDictionary<string, object>());
-			(Cache ?? (Cache = new ThreadLocal<IDictionary<string, object>>())).Value = cache;
+			Cache = Cache ?? (Cache = new ThreadLocal<IDictionary<string, IDictionary<string, object>>>(true));
+			IDictionary<string, IDictionary<string, object>> y = Cache.Values.SingleOrDefault(x => x.ContainsKey("Chinchilla.StateManagement.Threaded.ContextItemCollection"));
+			if (y == null)
+			{
+				y = new ConcurrentDictionary<string, IDictionary<string, object>>();
+				Cache.Value = y;
+				y.Add("Chinchilla.StateManagement.Threaded.ContextItemCollection", cache = new ConcurrentDictionary<string, object>());
+			}
+			if (cache != null && cache != y["Chinchilla.StateManagement.Threaded.ContextItemCollection"])
+			{
+				y.Remove("Chinchilla.StateManagement.Threaded.ContextItemCollection");
+				y.Add("Chinchilla.StateManagement.Threaded.ContextItemCollection", cache);
+			}
+			else
+			{
+				cache = y["Chinchilla.StateManagement.Threaded.ContextItemCollection"];
+			}
 
 			return cache;
 		}

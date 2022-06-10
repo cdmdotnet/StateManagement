@@ -258,7 +258,7 @@ namespace System.Threading.Tasks
 				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
-			return taskFactory.StartNew(async () =>
+			Task<Task> finalState = taskFactory.StartNew(() =>
 			{
 				if (cache != null)
 				{
@@ -268,8 +268,10 @@ namespace System.Threading.Tasks
 					}
 					catch { }
 				}
-				await asyncAction();
-			}).Result;
+				Task state = asyncAction();
+				return state;
+			});
+			return finalState.Result;
 		}
 
 		/// <summary>
@@ -286,7 +288,7 @@ namespace System.Threading.Tasks
 				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
-			return taskFactory.StartNew(async () =>
+			return taskFactory.StartNew(() =>
 			{
 				if (cache != null)
 				{
@@ -296,8 +298,8 @@ namespace System.Threading.Tasks
 					}
 					catch { }
 				}
-				await asyncAction();
-			}, cancellationToken).Result;
+				return asyncAction();
+			}, cancellationToken);
 		}
 
 		/// <summary>
@@ -314,7 +316,7 @@ namespace System.Threading.Tasks
 				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
-			return taskFactory.StartNew(async () =>
+			return taskFactory.StartNew(() =>
 			{
 				if (cache != null)
 				{
@@ -324,8 +326,8 @@ namespace System.Threading.Tasks
 					}
 					catch { }
 				}
-				await asyncAction();
-			}, creationOptions).Result;
+				return asyncAction();
+			}, creationOptions);
 		}
 
 		/// <summary>
@@ -342,7 +344,7 @@ namespace System.Threading.Tasks
 				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
-			return taskFactory.StartNew(async () =>
+			return taskFactory.StartNew(() =>
 			{
 				if (cache != null)
 				{
@@ -352,8 +354,8 @@ namespace System.Threading.Tasks
 					}
 					catch { }
 				}
-				await asyncAction();
-			}, cancellationToken, creationOptions, scheduler).Result;
+				return asyncAction();
+			}, cancellationToken, creationOptions, scheduler);
 		}
 
 		/// <summary>
