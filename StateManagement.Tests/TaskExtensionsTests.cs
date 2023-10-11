@@ -23,7 +23,7 @@ namespace Chinchilla.StateManagement.Tests
 			// Act
 			Task.Factory.StartNewSafely(() => {
 				var c2 = new Threaded.ContextItemCollection();
-				Assert.AreEqual(t1, c2.GetData<Guid>("T1"));
+				Assert.AreEqual(t1, c2.GetData<Guid>("T1"), "Cache did not transfer");
 				Thread.Sleep(1000);
 				c2.SetData("T2", t2);
 			}).Wait();
