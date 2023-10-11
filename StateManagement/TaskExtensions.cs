@@ -250,28 +250,10 @@ namespace System.Threading.Tasks
 		/// </summary>
 		/// <remarks>Value changes will be passed back out.</remarks>
 		[MethodImpl(MethodImplOptions.NoInlining)]
+		[Obsolete("Use StartNewSafelyAsync")]
 		public static Task StartNewSafely(this TaskFactory taskFactory, Func<Task> asyncAction)
 		{
-			IDictionary<string, object> cache = null;
-			try
-			{
-				cache = new ContextItemCollection().GetCache();
-			}
-			catch { }
-			Task<Task> finalState = taskFactory.StartNew(() =>
-			{
-				if (cache != null)
-				{
-					try
-					{
-						new ContextItemCollection().SetCache(cache);
-					}
-					catch { }
-				}
-				Task state = asyncAction();
-				return state;
-			});
-			return finalState.Result;
+			return StartNewSafelyAsync(taskFactory, asyncAction);
 		}
 
 		/// <summary>
@@ -280,7 +262,7 @@ namespace System.Threading.Tasks
 		/// </summary>
 		/// <remarks>Value changes will be passed back out.</remarks>
 		[MethodImpl(MethodImplOptions.NoInlining)]
-		public static Task StartNewSafely(this TaskFactory taskFactory, Func<Task> asyncAction, CancellationToken cancellationToken)
+		public static Task StartNewSafelyAsync(this TaskFactory taskFactory, Func<Task> asyncAction)
 		{
 			IDictionary<string, object> cache = null;
 			try
@@ -288,7 +270,7 @@ namespace System.Threading.Tasks
 				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
-			return taskFactory.StartNew(() =>
+			return taskFactory.StartNew(async () =>
 			{
 				if (cache != null)
 				{
@@ -298,7 +280,47 @@ namespace System.Threading.Tasks
 					}
 					catch { }
 				}
-				return asyncAction();
+				await asyncAction();
+			});
+		}
+
+		/// <summary>
+		/// This method will ensure all thread based storage values are copied into the <see cref="Thread"/> used by this <see cref="Task"/>.
+		/// This will ensure logging and eventing will work far more smoothly.
+		/// </summary>
+		/// <remarks>Value changes will be passed back out.</remarks>
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		[Obsolete("Use StartNewSafelyAsync")]
+		public static Task StartNewSafely(this TaskFactory taskFactory, Func<Task> asyncAction, CancellationToken cancellationToken)
+		{
+			return StartNewSafelyAsync(taskFactory, asyncAction, cancellationToken);
+		}
+
+		/// <summary>
+		/// This method will ensure all thread based storage values are copied into the <see cref="Thread"/> used by this <see cref="Task"/>.
+		/// This will ensure logging and eventing will work far more smoothly.
+		/// </summary>
+		/// <remarks>Value changes will be passed back out.</remarks>
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		public static Task StartNewSafelyAsync(this TaskFactory taskFactory, Func<Task> asyncAction, CancellationToken cancellationToken)
+		{
+			IDictionary<string, object> cache = null;
+			try
+			{
+				cache = new ContextItemCollection().GetCache();
+			}
+			catch { }
+			return taskFactory.StartNew(async () =>
+			{
+				if (cache != null)
+				{
+					try
+					{
+						new ContextItemCollection().SetCache(cache);
+					}
+					catch { }
+				}
+				await asyncAction();
 			}, cancellationToken);
 		}
 
@@ -308,7 +330,19 @@ namespace System.Threading.Tasks
 		/// </summary>
 		/// <remarks>Value changes will be passed back out.</remarks>
 		[MethodImpl(MethodImplOptions.NoInlining)]
+		[Obsolete("Use StartNewSafelyAsync")]
 		public static Task StartNewSafely(this TaskFactory taskFactory, Func<Task> asyncAction, TaskCreationOptions creationOptions)
+		{
+			return StartNewSafelyAsync(taskFactory, asyncAction, creationOptions);
+		}
+
+		/// <summary>
+		/// This method will ensure all thread based storage values are copied into the <see cref="Thread"/> used by this <see cref="Task"/>.
+		/// This will ensure logging and eventing will work far more smoothly.
+		/// </summary>
+		/// <remarks>Value changes will be passed back out.</remarks>
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		public static Task StartNewSafelyAsync(this TaskFactory taskFactory, Func<Task> asyncAction, TaskCreationOptions creationOptions)
 		{
 			IDictionary<string, object> cache = null;
 			try
@@ -316,7 +350,7 @@ namespace System.Threading.Tasks
 				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
-			return taskFactory.StartNew(() =>
+			return taskFactory.StartNew(async () =>
 			{
 				if (cache != null)
 				{
@@ -326,7 +360,7 @@ namespace System.Threading.Tasks
 					}
 					catch { }
 				}
-				return asyncAction();
+				await asyncAction();
 			}, creationOptions);
 		}
 
@@ -336,7 +370,19 @@ namespace System.Threading.Tasks
 		/// </summary>
 		/// <remarks>Value changes will be passed back out.</remarks>
 		[MethodImpl(MethodImplOptions.NoInlining)]
+		[Obsolete("Use StartNewSafelyAsync")]
 		public static Task StartNewSafely(this TaskFactory taskFactory, Func<Task> asyncAction, CancellationToken cancellationToken, TaskCreationOptions creationOptions, TaskScheduler scheduler)
+		{
+			return StartNewSafelyAsync(taskFactory, asyncAction, cancellationToken, creationOptions, scheduler);
+		}
+
+		/// <summary>
+		/// This method will ensure all thread based storage values are copied into the <see cref="Thread"/> used by this <see cref="Task"/>.
+		/// This will ensure logging and eventing will work far more smoothly.
+		/// </summary>
+		/// <remarks>Value changes will be passed back out.</remarks>
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		public static Task StartNewSafelyAsync(this TaskFactory taskFactory, Func<Task> asyncAction, CancellationToken cancellationToken, TaskCreationOptions creationOptions, TaskScheduler scheduler)
 		{
 			IDictionary<string, object> cache = null;
 			try
@@ -344,7 +390,7 @@ namespace System.Threading.Tasks
 				cache = new ContextItemCollection().GetCache();
 			}
 			catch { }
-			return taskFactory.StartNew(() =>
+			return taskFactory.StartNew(async () =>
 			{
 				if (cache != null)
 				{
@@ -354,8 +400,130 @@ namespace System.Threading.Tasks
 					}
 					catch { }
 				}
-				return asyncAction();
+				await asyncAction();
 			}, cancellationToken, creationOptions, scheduler);
+		}
+
+		/// <summary>
+		/// This method will ensure all thread based storage values are copied into the <see cref="Thread"/> used by this <see cref="Task"/>.
+		/// This will ensure logging and eventing will work far more smoothly.
+		/// </summary>
+		/// <remarks>Value changes will be passed back out.</remarks>
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		public static Task<TResult> StartNewSafelyAsync<TResult>(this TaskFactory taskFactory, Func<Task<TResult>> asyncFunction)
+		{
+			IDictionary<string, object> cache = null;
+			try
+			{
+				cache = new ContextItemCollection().GetCache();
+			}
+			catch { }
+
+			return Task.Run(async () => {
+				return await taskFactory.StartNew(async () =>
+				{
+					if (cache != null)
+					{
+						try
+						{
+							new ContextItemCollection().SetCache(cache);
+						}
+						catch { }
+					}
+					return await asyncFunction();
+				}).Result;
+			});
+		}
+
+		/// <summary>
+		/// This method will ensure all thread based storage values are copied into the <see cref="Thread"/> used by this <see cref="Task"/>.
+		/// This will ensure logging and eventing will work far more smoothly.
+		/// </summary>
+		/// <remarks>Value changes will be passed back out.</remarks>
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		public static Task<TResult> StartNewSafelyAsync<TResult>(this TaskFactory taskFactory, Func<Task<TResult>> asyncFunction, CancellationToken cancellationToken)
+		{
+			IDictionary<string, object> cache = null;
+			try
+			{
+				cache = new ContextItemCollection().GetCache();
+			}
+			catch { }
+			return Task.Run(async () => {
+				return await taskFactory.StartNew(async () =>
+				{
+					if (cache != null)
+					{
+						try
+						{
+							new ContextItemCollection().SetCache(cache);
+						}
+						catch { }
+					}
+					return await asyncFunction();
+				}, cancellationToken).Result;
+			}, cancellationToken);
+		}
+
+		/// <summary>
+		/// This method will ensure all thread based storage values are copied into the <see cref="Thread"/> used by this <see cref="Task"/>.
+		/// This will ensure logging and eventing will work far more smoothly.
+		/// </summary>
+		/// <remarks>Value changes will be passed back out.</remarks>
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		public static Task<TResult> StartNewSafelyAsync<TResult>(this TaskFactory taskFactory, Func<Task<TResult>> asyncFunction, TaskCreationOptions creationOptions)
+		{
+			IDictionary<string, object> cache = null;
+			try
+			{
+				cache = new ContextItemCollection().GetCache();
+			}
+			catch { }
+
+			return Task.Run(async () => {
+				return await taskFactory.StartNew(async () =>
+				{
+					if (cache != null)
+					{
+						try
+						{
+							new ContextItemCollection().SetCache(cache);
+						}
+						catch { }
+					}
+					return await asyncFunction();
+				}, creationOptions).Result;
+			});
+		}
+
+		/// <summary>
+		/// This method will ensure all thread based storage values are copied into the <see cref="Thread"/> used by this <see cref="Task"/>.
+		/// This will ensure logging and eventing will work far more smoothly.
+		/// </summary>
+		/// <remarks>Value changes will be passed back out.</remarks>
+		[MethodImpl(MethodImplOptions.NoInlining)]
+		public static Task<TResult> StartNewSafelyAsync<TResult>(this TaskFactory taskFactory, Func<Task<TResult>> asyncFunction, CancellationToken cancellationToken, TaskCreationOptions creationOptions, TaskScheduler scheduler)
+		{
+			IDictionary<string, object> cache = null;
+			try
+			{
+				cache = new ContextItemCollection().GetCache();
+			}
+			catch { }
+			return Task.Run(async () => {
+				return await taskFactory.StartNew(async () =>
+				{
+					if (cache != null)
+					{
+						try
+						{
+							new ContextItemCollection().SetCache(cache);
+						}
+						catch { }
+					}
+					return await asyncFunction();
+				}, cancellationToken, creationOptions, scheduler).Result;
+			}, cancellationToken);
 		}
 
 		/// <summary>
