@@ -3,8 +3,8 @@ name: Build Core Framework
 on: [push]
 
 env:
-  nuGetVersionNumber: 4.2
-  nuGetFullVersionNumber: 4.2.${{ github.run_number }}
+  nuGetVersionNumber: 4.2.0
+  nuGetFullVersionNumber: 4.2.0.${{ github.run_number }}
 
 jobs:
   build:
@@ -12,20 +12,37 @@ jobs:
     strategy:
       matrix:
         os: [windows-2019]
+        dotnet-version: [ '7.0.x' ]
     steps:
     - uses: actions/checkout@v1
     - name: Setup dotnet CLI
       uses: actions/setup-dotnet@v1.7.2
       with:
-        dotnet-version: 3.0.100
+        dotnet-version: | 
+          3.1.x
+          5.0.x
+          6.0.x
+          7.0.x
     - name: Prepare Legacy NuGet
       run: |
         cd .\.nuget
         ren NuGet.ex_ NuGet.exe
         cd ..
         .nuget\NuGet.exe restore Chinchilla.StateManagement.sln
+
     - name: Build with dotnet CLI
       run: dotnet build --configuration Release .\Chinchilla.StateManagement.sln
+
+    - name: Test with dotnet (.NET Core 6.0)
+      run: dotnet test -f net6.0 --logger trx --collect "Code Coverage" --results-directory "TestResults-${{ matrix.dotnet-version }}" StateManagement.Tests\Chinchilla.StateManagement.Tests.csproj
+    - name: Upload dotnet test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: dotnet-results-${{ matrix.dotnet-version }}
+        path: TestResults-${{ matrix.dotnet-version }}
+      # Use always() to always run this step to publish test results when there are test failures
+      if: ${{ always() }}
+
     - name: Pack with dotnet CLI
       run: |
         dotnet pack -c Release StateManagement\Chinchilla.StateManagement.csproj -p:Version=${{ env.nuGetVersionNumber }} -p:PackageVersion=${{ env.nuGetFullVersionNumber }} --version-suffix beta-$(date +%Y%m%d%H%M%S) --include-symbols -p:SymbolPackageFormat=snupkg --include-source -o Packaged
