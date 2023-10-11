@@ -10,7 +10,7 @@
 		<PackageProjectUrl>https://github.com/cdmdotnet/StateManagement</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/cdmdotnet/StateManagement</RepositoryUrl>
 		<PackageReleaseNotes>
-			Version 4.2.0
+			Version 4.2
 
 			* Added better support for async functions in StartNewSafely and renamed several implementations to StartNewSafelyAsync
 

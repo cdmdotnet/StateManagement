@@ -3,8 +3,8 @@ name: Build Core Framework
 on: [push]
 
 env:
-  nuGetVersionNumber: 4.2.0
-  nuGetFullVersionNumber: 4.2.0.${{ github.run_number }}
+  nuGetVersionNumber: 4.2
+  nuGetFullVersionNumber: 4.2.${{ github.run_number }}
 
 jobs:
   build:
