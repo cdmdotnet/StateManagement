@@ -21,7 +21,15 @@ namespace Chinchilla.StateManagement.Threaded
 		/// <summary>
 		/// The reference to the internal storage cache.
 		/// </summary>
-		protected static ThreadLocal<IDictionary<string, object>> Cache { get; private set; }
+		protected static AsyncLocal<IDictionary<string, object>> Cache { get; private set; }
+
+		private static void ThreadContextChanged(AsyncLocalValueChangedArgs<IDictionary<string, object>> changedArgs)
+		{
+			if (changedArgs.ThreadContextChanged && changedArgs.CurrentValue != null)
+			{
+				// Cache.Value = null;
+			}
+		}
 
 		// ReSharper disable RedundantOverridenMember
 		/// <summary>
@@ -65,7 +73,7 @@ namespace Chinchilla.StateManagement.Threaded
 
 		internal override IDictionary<string, object> SetCache(IDictionary<string, object> cache = null)
 		{
-			Cache = Cache ?? (Cache = new ThreadLocal<IDictionary<string, object>>(false));
+			Cache = Cache ?? (Cache = new AsyncLocal<IDictionary<string, object>>(ThreadContextChanged));
 			IDictionary<string, object> y = Cache.Value;
 			if (y == null)
 			{

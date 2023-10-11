@@ -33,15 +33,15 @@ jobs:
     - name: Build with dotnet CLI
       run: dotnet build --configuration Release .\Chinchilla.StateManagement.sln
 
-#    - name: Test with dotnet (.NET Core 6.0)
-#      run: dotnet test -f net6.0 --logger trx --collect "Code Coverage" --results-directory "TestResults-${{ matrix.dotnet-version }}" StateManagement.Tests\Chinchilla.StateManagement.Tests.csproj
-#    - name: Upload dotnet test results
-#      uses: actions/upload-artifact@v3
-#      with:
-#        name: dotnet-results-${{ matrix.dotnet-version }}
-#        path: TestResults-${{ matrix.dotnet-version }}
-#      # Use always() to always run this step to publish test results when there are test failures
-#      if: ${{ always() }}
+    - name: Test with dotnet (.NET Core 6.0)
+      run: dotnet test -f net6.0 --logger trx --collect "Code Coverage" --results-directory "TestResults-${{ matrix.dotnet-version }}" StateManagement.Tests\Chinchilla.StateManagement.Tests.csproj
+    - name: Upload dotnet test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: dotnet-results-${{ matrix.dotnet-version }}
+        path: TestResults-${{ matrix.dotnet-version }}
+      # Use always() to always run this step to publish test results when there are test failures
+      if: ${{ always() }}
 
     - name: Pack with dotnet CLI
       run: |
