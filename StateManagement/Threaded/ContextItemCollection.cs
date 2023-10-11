@@ -7,6 +7,7 @@
 // // -----------------------------------------------------------------------
 #endregion
 
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace Chinchilla.StateManagement.Threaded
 		/// <summary>
 		/// The reference to the internal storage cache.
 		/// </summary>
-		protected static ThreadLocal<IDictionary<string, IDictionary<string, object>>> Cache { get; private set; }
+		protected static ThreadLocal<IDictionary<string, object>> Cache { get; private set; }
 
 		// ReSharper disable RedundantOverridenMember
 		/// <summary>
@@ -46,6 +47,8 @@ namespace Chinchilla.StateManagement.Threaded
 		}
 		// ReSharper restore RedundantOverridenMember
 
+		private string GetKey() { return $"Chinchilla.StateManagement.Threaded.ContextItemCollection_{Thread.CurrentThread.ManagedThreadId}"; }
+
 		/// <summary>
 		/// Access the internal cache
 		/// </summary>
@@ -54,9 +57,7 @@ namespace Chinchilla.StateManagement.Threaded
 			IDictionary<string, object> cache = null;
 			try
 			{
-				var _cache = Cache;
-				if (_cache != null)
-					cache = _cache.Values.Single(x => x.ContainsKey("Chinchilla.StateManagement.Threaded.ContextItemCollection"))["Chinchilla.StateManagement.Threaded.ContextItemCollection"];
+				cache = Cache?.Value;
 			}
 			catch { }
 			return cache ?? SetCache();
@@ -64,22 +65,12 @@ namespace Chinchilla.StateManagement.Threaded
 
 		internal override IDictionary<string, object> SetCache(IDictionary<string, object> cache = null)
 		{
-			Cache = Cache ?? (Cache = new ThreadLocal<IDictionary<string, IDictionary<string, object>>>(true));
-			IDictionary<string, IDictionary<string, object>> y = Cache.Values.SingleOrDefault(x => x.ContainsKey("Chinchilla.StateManagement.Threaded.ContextItemCollection"));
+			Cache = Cache ?? (Cache = new ThreadLocal<IDictionary<string, object>>(false));
+			IDictionary<string, object> y = Cache.Value;
 			if (y == null)
 			{
-				y = new ConcurrentDictionary<string, IDictionary<string, object>>();
+				y = cache ?? (cache = new ConcurrentDictionary<string, object>());
 				Cache.Value = y;
-				y.Add("Chinchilla.StateManagement.Threaded.ContextItemCollection", cache = new ConcurrentDictionary<string, object>());
-			}
-			if (cache != null && cache != y["Chinchilla.StateManagement.Threaded.ContextItemCollection"])
-			{
-				y.Remove("Chinchilla.StateManagement.Threaded.ContextItemCollection");
-				y.Add("Chinchilla.StateManagement.Threaded.ContextItemCollection", cache);
-			}
-			else
-			{
-				cache = y["Chinchilla.StateManagement.Threaded.ContextItemCollection"];
 			}
 
 			return cache;

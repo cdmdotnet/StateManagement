@@ -17,15 +17,15 @@ namespace Chinchilla.StateManagement.Tests
 			bool thread1Done = false;
 			bool thread2ReadyToStart = false;
 			bool thread2Done = false;
-			var cic = new Threaded.ContextItemCollection();
 			int? finalTest1Result = null;
 			int? finalTest2Result = null;
 
 			// Act
-			Task.Factory.StartNew(() => {
+			var thread1 = new Thread(() => {
+				var cic = new Threaded.ContextItemCollection();
 				cic.SetData("key", 1);
 				thread2ReadyToStart = true;
-				while(!thread2Done)
+				while (!thread2Done)
 				{
 					Thread.Sleep(250);
 				}
@@ -33,25 +33,30 @@ namespace Chinchilla.StateManagement.Tests
 				Task.Factory.StartNewSafely(() =>
 				{
 					finalTest1Result = cic.GetData<int>("key");
+					Console.WriteLine($"Thread 1 obtained {finalTest1Result}");
 				});
 			});
+			thread1.Start();
 
-			Task.Factory.StartNew(() => {
+			var thread2 = new Thread(() => {
+				var cic = new Threaded.ContextItemCollection();
 				while (!thread2ReadyToStart)
 				{
 					Thread.Sleep(250);
 				}
 				cic.SetData("key", 2);
 				thread2Done = true;
-				while(!thread1Done)
+				while (!thread1Done)
 				{
 					Thread.Sleep(250);
 				}
 				Task.Factory.StartNewSafely(() =>
 				{
 					finalTest2Result = cic.GetData<int>("key");
+					Console.WriteLine($"Thread 2 obtained {finalTest2Result}");
 				});
 			});
+			thread2.Start();
 
 			while (finalTest1Result == null || finalTest2Result == null)
 			{
@@ -61,6 +66,7 @@ namespace Chinchilla.StateManagement.Tests
 			// Assert
 			Assert.AreEqual(1, finalTest1Result.Value);
 			Assert.AreEqual(2, finalTest2Result.Value);
+			var cic = new Threaded.ContextItemCollection();
 		}
 	}
 }
