@@ -38,7 +38,7 @@ jobs:
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v3
       with:
-        name: dotnet-results-${{ matrix.dotnet-version }}
+        name: dotnet-net46-results-${{ matrix.dotnet-version }}
         path: TestResults-net46-${{ matrix.dotnet-version }}
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
@@ -48,7 +48,7 @@ jobs:
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v3
       with:
-        name: dotnet-results-${{ matrix.dotnet-version }}
+        name: dotnet-net60-results-${{ matrix.dotnet-version }}
         path: TestResults-net60-${{ matrix.dotnet-version }}
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
