@@ -80,7 +80,7 @@ namespace Chinchilla.StateManagement.Web
 			cache = (cache ?? new ConcurrentDictionary<string, object>());
 			if (HttpContext.Current != null)
 				HttpContext.Current.Items[CurrentContextKeysDictionaryName] = cache;
-			base.SetData(CurrentContextKeysDictionaryName, cache);
+			base.SetCache(CurrentContextKeysDictionaryName, cache);
 
 			return cache;
 		}
