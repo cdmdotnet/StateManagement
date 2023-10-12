@@ -34,7 +34,7 @@ jobs:
       run: dotnet build --configuration Release .\Chinchilla.StateManagement.sln
 
     - name: Test with dotnet (.NET 4.6)
-      run: dotnet test -f net46 --logger trx --collect "Code Coverage" --results-directory "TestResults-${{ matrix.dotnet-version }}" StateManagement.Tests\Chinchilla.StateManagement.Tests.csproj
+      run: dotnet test -f net46 --logger trx --collect "Code Coverage" --results-directory "TestResults-net46-${{ matrix.dotnet-version }}" StateManagement.Tests\Chinchilla.StateManagement.Tests.csproj
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v3
       with:
@@ -44,7 +44,7 @@ jobs:
       if: ${{ always() }}
 
     - name: Test with dotnet (.NET Core 6.0)
-      run: dotnet test -f net6.0 --logger trx --collect "Code Coverage" --results-directory "TestResults-${{ matrix.dotnet-version }}" StateManagement.Tests\Chinchilla.StateManagement.Tests.csproj
+      run: dotnet test -f net6.0 --logger trx --collect "Code Coverage" --results-directory "TestResults-net60-${{ matrix.dotnet-version }}" StateManagement.Tests\Chinchilla.StateManagement.Tests.csproj
     - name: Upload dotnet test results
       uses: actions/upload-artifact@v3
       with:
