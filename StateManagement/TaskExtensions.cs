@@ -11,6 +11,8 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Chinchilla.StateManagement.Threaded;
+using Chinchilla.StateManagement.Web;
+using static System.Collections.Specialized.BitVector32;
 
 namespace System.Threading.Tasks
 {
@@ -30,16 +32,16 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
-			catch{ }
+			catch { }
 			return taskFactory.StartNew(() =>
 			{
 				if (cache != null)
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -58,7 +60,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(() =>
@@ -67,7 +69,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -86,7 +88,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(() =>
@@ -95,7 +97,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -114,7 +116,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(() =>
@@ -123,7 +125,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -142,7 +144,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -151,7 +153,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -170,7 +172,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -179,7 +181,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -198,7 +200,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -207,7 +209,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -226,7 +228,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -235,7 +237,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -266,7 +268,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(async () =>
@@ -275,7 +277,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -306,7 +308,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(async () =>
@@ -315,7 +317,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -346,7 +348,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(async () =>
@@ -355,7 +357,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -386,7 +388,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(async () =>
@@ -395,7 +397,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -414,7 +416,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 
@@ -425,7 +427,7 @@ namespace System.Threading.Tasks
 					{
 						try
 						{
-							new ContextItemCollection().SetCache(cache);
+							SafeTask.GetContextItemCollection().SetCache(cache);
 						}
 						catch { }
 					}
@@ -445,7 +447,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return Task.Run(async () => {
@@ -455,7 +457,7 @@ namespace System.Threading.Tasks
 					{
 						try
 						{
-							new ContextItemCollection().SetCache(cache);
+							SafeTask.GetContextItemCollection().SetCache(cache);
 						}
 						catch { }
 					}
@@ -475,7 +477,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 
@@ -486,7 +488,7 @@ namespace System.Threading.Tasks
 					{
 						try
 						{
-							new ContextItemCollection().SetCache(cache);
+							SafeTask.GetContextItemCollection().SetCache(cache);
 						}
 						catch { }
 					}
@@ -506,7 +508,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return Task.Run(async () => {
@@ -516,7 +518,7 @@ namespace System.Threading.Tasks
 					{
 						try
 						{
-							new ContextItemCollection().SetCache(cache);
+							SafeTask.GetContextItemCollection().SetCache(cache);
 						}
 						catch { }
 					}
@@ -536,7 +538,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(() =>
@@ -545,7 +547,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -564,7 +566,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(() =>
@@ -573,7 +575,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -592,7 +594,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(() =>
@@ -601,7 +603,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -620,7 +622,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(() =>
@@ -629,7 +631,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -648,7 +650,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -657,7 +659,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -676,7 +678,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -685,7 +687,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -704,7 +706,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -713,7 +715,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -732,7 +734,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.StartNew(rawState =>
@@ -741,7 +743,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -760,7 +762,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync(asyncResult, rawResult =>
@@ -769,7 +771,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -788,7 +790,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync(asyncResult, rawResult =>
@@ -797,7 +799,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -816,7 +818,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync(asyncResult, rawResult =>
@@ -825,7 +827,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -843,7 +845,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((callBack, rawState) =>
@@ -852,7 +854,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -863,7 +865,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -881,7 +883,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((callBack, rawState) =>
@@ -890,7 +892,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -901,7 +903,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -919,7 +921,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, callBack, rawState) =>
@@ -928,7 +930,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -939,7 +941,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -957,7 +959,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, callBack, rawState) =>
@@ -966,7 +968,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -977,7 +979,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -995,7 +997,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, callBack, rawState) =>
@@ -1004,7 +1006,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1015,7 +1017,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1033,7 +1035,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, callBack, rawState) =>
@@ -1042,7 +1044,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1053,7 +1055,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1071,7 +1073,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, args3, callBack, rawState) =>
@@ -1080,7 +1082,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1091,7 +1093,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1109,7 +1111,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, args3, callBack, rawState) =>
@@ -1118,7 +1120,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1129,7 +1131,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1148,7 +1150,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync(asyncResult, rawResult =>
@@ -1157,7 +1159,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1176,7 +1178,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync(asyncResult, rawResult =>
@@ -1185,7 +1187,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1204,7 +1206,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync(asyncResult, rawResult =>
@@ -1213,7 +1215,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1231,7 +1233,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((callBack, rawState) =>
@@ -1240,7 +1242,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1251,7 +1253,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1269,7 +1271,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((callBack, rawState) =>
@@ -1278,7 +1280,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1289,7 +1291,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1307,7 +1309,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, callBack, rawState) =>
@@ -1316,7 +1318,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1327,7 +1329,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1345,7 +1347,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, callBack, rawState) =>
@@ -1354,7 +1356,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1365,7 +1367,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1383,7 +1385,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, callBack, rawState) =>
@@ -1392,7 +1394,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1403,7 +1405,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1421,7 +1423,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, callBack, rawState) =>
@@ -1430,7 +1432,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1441,7 +1443,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1459,7 +1461,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, args3, callBack, rawState) =>
@@ -1468,7 +1470,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1479,7 +1481,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1497,7 +1499,7 @@ namespace System.Threading.Tasks
 			IDictionary<string, object> cache = null;
 			try
 			{
-				cache = new ContextItemCollection().GetCache();
+				cache = SafeTask.GetContextItemCollection().GetCache();
 			}
 			catch { }
 			return taskFactory.FromAsync((args1, args2, args3, callBack, rawState) =>
@@ -1506,7 +1508,7 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
@@ -1517,13 +1519,223 @@ namespace System.Threading.Tasks
 				{
 					try
 					{
-						new ContextItemCollection().SetCache(cache);
+						SafeTask.GetContextItemCollection().SetCache(cache);
 					}
 					catch { }
 				}
 				return endMethod(rawResult);
 			}, arg1, arg2, arg3, state, creationOptions);
 		}
+	}
+
+	/// <summary>
+	/// A set of extension methods to allow a much safer usage of tasks.
+	/// </summary>
+	public class SafeTask
+	{
+		internal static ContextItemCollection GetContextItemCollection()
+		{
+#if NET46
+			return new WebContextItemCollection();
+#else
+			return new WebContextItemCollection(null);
+#endif
+		}
+
+		#region Run methods
+
+		/// <summary>
+		/// Queues the specified work to run on the ThreadPool and returns a Task handle for that work.
+		/// </summary>
+		/// <param name="action">The work to execute asynchronously</param>
+		/// <returns>A Task that represents the work queued to execute in the ThreadPool.</returns>
+		/// <exception cref="System.ArgumentNullException">
+		/// The <paramref name="action"/> parameter was null.
+		/// </exception>
+		public static async Task RunSafely(Action action)
+		{
+			await RunSafely(action, default);
+		}
+
+		/// <summary>
+		/// Queues the specified work to run on the ThreadPool and returns a Task handle for that work.
+		/// </summary>
+		/// <param name="action">The work to execute asynchronously</param>
+		/// <param name="cancellationToken">A cancellation token that should be used to cancel the work</param>
+		/// <returns>A Task that represents the work queued to execute in the ThreadPool.</returns>
+		/// <exception cref="System.ArgumentNullException">
+		/// The <paramref name="action"/> parameter was null.
+		/// </exception>
+		/// <exception cref="System.ObjectDisposedException">
+		/// The CancellationTokenSource associated with <paramref name="cancellationToken"/> was disposed.
+		/// </exception>
+		public static async Task RunSafely(Action action, CancellationToken cancellationToken)
+		{
+			IDictionary<string, object> cache = null;
+			try
+			{
+				cache = GetContextItemCollection().GetCache();
+			}
+			catch { }
+			await Task.Run(() =>
+			{
+				if (cache != null)
+				{
+					try
+					{
+						GetContextItemCollection().SetCache(cache);
+					}
+					catch { }
+				}
+				action();
+			}, cancellationToken);
+		}
+
+		/// <summary>
+		/// Queues the specified work to run on the ThreadPool and returns a Task(TResult) handle for that work.
+		/// </summary>
+		/// <param name="function">The work to execute asynchronously</param>
+		/// <returns>A Task(TResult) that represents the work queued to execute in the ThreadPool.</returns>
+		/// <exception cref="System.ArgumentNullException">
+		/// The <paramref name="function"/> parameter was null.
+		/// </exception>
+		public static async Task<TResult> RunSafelyAsync<TResult>(Func<TResult> function)
+		{
+			return await RunSafely(function, default);
+		}
+
+		/// <summary>
+		/// Queues the specified work to run on the ThreadPool and returns a Task(TResult) handle for that work.
+		/// </summary>
+		/// <param name="function">The work to execute asynchronously</param>
+		/// <param name="cancellationToken">A cancellation token that should be used to cancel the work</param>
+		/// <returns>A Task(TResult) that represents the work queued to execute in the ThreadPool.</returns>
+		/// <exception cref="System.ArgumentNullException">
+		/// The <paramref name="function"/> parameter was null.
+		/// </exception>
+		/// <exception cref="System.ObjectDisposedException">
+		/// The CancellationTokenSource associated with <paramref name="cancellationToken"/> was disposed.
+		/// </exception>
+		public static async Task<TResult> RunSafely<TResult>(Func<TResult> function, CancellationToken cancellationToken)
+		{
+			IDictionary<string, object> cache = null;
+			try
+			{
+				cache = GetContextItemCollection().GetCache();
+			}
+			catch { }
+			return await Task.Run(() =>
+			{
+				if (cache != null)
+				{
+					try
+					{
+						GetContextItemCollection().SetCache(cache);
+					}
+					catch { }
+				}
+				return function();
+			}, cancellationToken);
+		}
+
+		/// <summary>
+		/// Queues the specified work to run on the ThreadPool and returns a proxy for the
+		/// Task returned by <paramref name="function"/>.
+		/// </summary>
+		/// <param name="function">The work to execute asynchronously</param>
+		/// <returns>A Task that represents a proxy for the Task returned by <paramref name="function"/>.</returns>
+		/// <exception cref="System.ArgumentNullException">
+		/// The <paramref name="function"/> parameter was null.
+		/// </exception>
+		public static async Task RunSafelyAsync(Func<Task> function)
+		{
+			await RunSafelyAsync(function, default);
+		}
+
+		/// <summary>
+		/// Queues the specified work to run on the ThreadPool and returns a proxy for the
+		/// Task returned by <paramref name="function"/>.
+		/// </summary>
+		/// <param name="function">The work to execute asynchronously</param>
+		/// <param name="cancellationToken">A cancellation token that should be used to cancel the work</param>
+		/// <returns>A Task that represents a proxy for the Task returned by <paramref name="function"/>.</returns>
+		/// <exception cref="System.ArgumentNullException">
+		/// The <paramref name="function"/> parameter was null.
+		/// </exception>
+		/// <exception cref="System.ObjectDisposedException">
+		/// The CancellationTokenSource associated with <paramref name="cancellationToken"/> was disposed.
+		/// </exception>
+		public static async Task RunSafelyAsync(Func<Task> function, CancellationToken cancellationToken)
+		{
+			IDictionary<string, object> cache = null;
+			try
+			{
+				cache = GetContextItemCollection().GetCache();
+			}
+			catch { }
+			await Task.Run(async () =>
+			{
+				if (cache != null)
+				{
+					try
+					{
+						GetContextItemCollection().SetCache(cache);
+					}
+					catch { }
+				}
+				await function();
+			}, cancellationToken);
+		}
+
+		/// <summary>
+		/// Queues the specified work to run on the ThreadPool and returns a proxy for the
+		/// Task(TResult) returned by <paramref name="function"/>.
+		/// </summary>
+		/// <typeparam name="TResult">The type of the result returned by the proxy Task.</typeparam>
+		/// <param name="function">The work to execute asynchronously</param>
+		/// <returns>A Task(TResult) that represents a proxy for the Task(TResult) returned by <paramref name="function"/>.</returns>
+		/// <exception cref="System.ArgumentNullException">
+		/// The <paramref name="function"/> parameter was null.
+		/// </exception>
+		public static async Task<TResult> RunSafelyAsync<TResult>(Func<Task<TResult>> function)
+		{
+			return await RunSafelyAsync(function, default);
+		}
+
+		/// <summary>
+		/// Queues the specified work to run on the ThreadPool and returns a proxy for the
+		/// Task(TResult) returned by <paramref name="function"/>.
+		/// </summary>
+		/// <typeparam name="TResult">The type of the result returned by the proxy Task.</typeparam>
+		/// <param name="function">The work to execute asynchronously</param>
+		/// <param name="cancellationToken">A cancellation token that should be used to cancel the work</param>
+		/// <returns>A Task(TResult) that represents a proxy for the Task(TResult) returned by <paramref name="function"/>.</returns>
+		/// <exception cref="System.ArgumentNullException">
+		/// The <paramref name="function"/> parameter was null.
+		/// </exception>
+		public static async Task<TResult> RunSafelyAsync<TResult>(Func<Task<TResult>> function, CancellationToken cancellationToken)
+		{
+			IDictionary<string, object> cache = null;
+			try
+			{
+				cache = GetContextItemCollection().GetCache();
+			}
+			catch { }
+			return await Task.Run(async () =>
+			{
+				if (cache != null)
+				{
+					try
+					{
+						GetContextItemCollection().SetCache(cache);
+					}
+					catch { }
+				}
+				return await function();
+			}, cancellationToken);
+		}
+
+		#endregion
 	}
 }
 #endif

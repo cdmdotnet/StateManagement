@@ -74,7 +74,7 @@ namespace Chinchilla.StateManagement.Web
 			IDictionary<string, object> cache = null;
 			try
 			{
-				if (HttpContextAccessor.HttpContext != null)
+				if (HttpContextAccessor != null && HttpContextAccessor.HttpContext != null)
 					cache = (IDictionary<string, object>)HttpContextAccessor.HttpContext.Items[CurrentContextKeysDictionaryName];
 			}
 			catch (NullReferenceException)
@@ -90,9 +90,9 @@ namespace Chinchilla.StateManagement.Web
 		internal override IDictionary<string, object> SetCache(IDictionary<string, object> cache = null)
 		{
 			cache = (cache ?? new ConcurrentDictionary<string, object>());
-			if (HttpContextAccessor.HttpContext != null)
+			if (HttpContextAccessor != null && HttpContextAccessor.HttpContext != null)
 				HttpContextAccessor.HttpContext.Items[CurrentContextKeysDictionaryName] = cache;
-			base.SetData(CurrentContextKeysDictionaryName, cache);
+			base.SetCache(cache);
 
 			return cache;
 		}

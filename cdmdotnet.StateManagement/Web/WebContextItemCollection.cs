@@ -21,7 +21,7 @@ namespace Chinchilla.StateManagement.Web
 	/// <summary>
 	/// An instance of <see cref="IContextItemCollection"/> with a current request context
 	/// </summary>
-	public class WebContextItemCollection : ContextItemCollection
+	public class WebContextItemCollection : Threaded.ContextItemCollection
 	{
 		// ReSharper disable RedundantOverridenMember
 		/// <summary>
@@ -71,14 +71,8 @@ namespace Chinchilla.StateManagement.Web
 					SetCache();
 			}
 			if (cache == null)
-			{
-				try
-				{
-					cache = (IDictionary<string, object>)CallContext.GetData(CurrentContextKeysDictionaryName);
-				}
-				catch (NullReferenceException) { }
-			}
-			return cache ?? SetCache();
+				cache = base.GetCache();
+			return cache;
 		}
 
 		internal override IDictionary<string, object> SetCache(IDictionary<string, object> cache = null)
@@ -86,7 +80,7 @@ namespace Chinchilla.StateManagement.Web
 			cache = (cache ?? new ConcurrentDictionary<string, object>());
 			if (HttpContext.Current != null)
 				HttpContext.Current.Items[CurrentContextKeysDictionaryName] = cache;
-			CallContext.SetData(CurrentContextKeysDictionaryName, cache);
+			base.SetData(CurrentContextKeysDictionaryName, cache);
 
 			return cache;
 		}
