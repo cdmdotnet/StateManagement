@@ -1,4 +1,5 @@
-﻿#if NET40
+﻿#if NETSTANDARD2_0
+#else
 #region Copyright
 // // -----------------------------------------------------------------------
 // // <copyright company="cdmdotnet Limited">

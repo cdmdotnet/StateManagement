@@ -1,4 +1,5 @@
-﻿#if NETSTANDARD2_0
+﻿#if NET40
+#else
 #region Copyright
 // // -----------------------------------------------------------------------
 // // <copyright company="Chinchilla Software Limited">
@@ -11,8 +12,6 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Chinchilla.StateManagement.Threaded;
 
-// ReSharper disable once CheckNamespace
-// ReSharper disable EmptyGeneralCatchClause
 namespace System.Threading.Tasks
 {
 	/// <summary>
@@ -1527,5 +1526,4 @@ namespace System.Threading.Tasks
 		}
 	}
 }
-// ReSharper restore EmptyGeneralCatchClause
 #endif

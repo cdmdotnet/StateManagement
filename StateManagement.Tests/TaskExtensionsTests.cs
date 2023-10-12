@@ -45,7 +45,7 @@ namespace Chinchilla.StateManagement.Tests
 			await Task.Factory.StartNewSafelyAsync(async () => {
 				var c2 = new Threaded.ContextItemCollection();
 				var c2Value = c2.GetData<Guid>("T1");
-				Assert.AreEqual(t1, c2Value);
+				Assert.AreEqual(t1, c2Value, "Cache did not transfer");
 				Thread.Sleep(1000);
 				c2.SetData("T2", t2);
 
@@ -73,7 +73,7 @@ namespace Chinchilla.StateManagement.Tests
 				while (true)
 				{
 					var c2 = new Threaded.ContextItemCollection();
-					Assert.AreEqual(t1, c2.GetData<Guid>("T1"));
+					Assert.AreEqual(t1, c2.GetData<Guid>("T1"), "Cache did not transfer");
 					Thread.Sleep(1000);
 					c2.SetData("T2", t2);
 
@@ -112,7 +112,7 @@ namespace Chinchilla.StateManagement.Tests
 				while (true)
 				{
 					var c2 = new Threaded.ContextItemCollection();
-					Assert.AreEqual(t1, c2.GetData<Guid>("T1"));
+					Assert.AreEqual(t1, c2.GetData<Guid>("T1"), "Cache did not transfer");
 					Thread.Sleep(1000);
 					c2.SetData("T2", t2);
 
@@ -150,7 +150,7 @@ namespace Chinchilla.StateManagement.Tests
 			int t5 = await Task.Factory.StartNewSafelyAsync(async () => {
 				var c2 = new Threaded.ContextItemCollection();
 				var c2Value = c2.GetData<Guid>("T1");
-				Assert.AreEqual(t1, c2Value);
+				Assert.AreEqual(t1, c2Value, "Cache did not transfer");
 				Thread.Sleep(1000);
 				c2.SetData("T2", t2);
 

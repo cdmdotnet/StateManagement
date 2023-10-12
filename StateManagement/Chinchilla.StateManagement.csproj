@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net40;net46</TargetFrameworks>
 		<Authors>Chinchilla Software</Authors>
 		<Company>Chinchilla Software</Company>
 		<Description>Chinchilla.StateManagement is a .NET Core port of cdmdotnet.StateManagement, a C# state management framework that provides a consistent abstraction for accessing data from various collections such as thread bound contexts, HTTP Request and Response collections as well as HTTP Cookies.</Description>
@@ -13,6 +13,7 @@
 			Version 4.2
 
 			* Added better support for async functions in StartNewSafely and renamed several implementations to StartNewSafelyAsync
+			* Added async support for .NET 4.6 onwards.
 
 			Version 4.1.0
 
@@ -68,7 +69,7 @@
 
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net40;net46</TargetFrameworks>
 		<DocumentationFile>Chinchilla.StateManagement.xml</DocumentationFile>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 		<ApplicationIcon />
@@ -112,7 +113,11 @@
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net46' ">
+		<PackageReference Include="System.Threading" Version="4.3.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net40' OR '$(TargetFramework)' == 'net46' ">
 		<Reference Include="System.Web" />
 		<Reference Include="System.Runtime.Caching" />
 	</ItemGroup>

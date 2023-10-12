@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -22,8 +20,8 @@ namespace Chinchilla.StateManagement.Tests
 
 			// Act
 			var thread1 = new Thread(() => {
-				var cic = new Threaded.ContextItemCollection();
-				cic.SetData("key", 1);
+				var cic1 = new Threaded.ContextItemCollection();
+				cic1.SetData("key", 1);
 				thread2ReadyToStart = true;
 				while (!thread2Done)
 				{
@@ -32,19 +30,19 @@ namespace Chinchilla.StateManagement.Tests
 				thread1Done = true;
 				Task.Factory.StartNewSafely(() =>
 				{
-					finalTest1Result = cic.GetData<int>("key");
+					finalTest1Result = cic1.GetData<int>("key");
 					Console.WriteLine($"Thread 1 obtained {finalTest1Result}");
 				});
 			});
 			thread1.Start();
 
 			var thread2 = new Thread(() => {
-				var cic = new Threaded.ContextItemCollection();
+				var cic2 = new Threaded.ContextItemCollection();
 				while (!thread2ReadyToStart)
 				{
 					Thread.Sleep(250);
 				}
-				cic.SetData("key", 2);
+				cic2.SetData("key", 2);
 				thread2Done = true;
 				while (!thread1Done)
 				{
@@ -52,7 +50,7 @@ namespace Chinchilla.StateManagement.Tests
 				}
 				Task.Factory.StartNewSafely(() =>
 				{
-					finalTest2Result = cic.GetData<int>("key");
+					finalTest2Result = cic2.GetData<int>("key");
 					Console.WriteLine($"Thread 2 obtained {finalTest2Result}");
 				});
 			});

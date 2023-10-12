@@ -9,12 +9,8 @@
 
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using System.Threading;
-using System.Threading.Tasks;
 using Chinchilla.StateManagement.Web;
 
-// ReSharper disable once CheckNamespace
-// ReSharper disable EmptyGeneralCatchClause
 namespace System.Threading.Tasks
 {
 	/// <summary>
@@ -22,8 +18,6 @@ namespace System.Threading.Tasks
 	/// </summary>
 	public static class TaskExtensions
 	{
-
-
 		/// <summary>
 		/// This method will ensure all thread based storage values are copied into the <see cref="Thread"/> used by this <see cref="Task"/>.
 		/// This will ensure logging and eventing will work far more smoothly.
@@ -1249,5 +1243,4 @@ namespace System.Threading.Tasks
 		}
 	}
 }
-// ReSharper restore EmptyGeneralCatchClause
 #endif
